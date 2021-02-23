@@ -1,0 +1,134 @@
+<div>
+  <div>
+    <h1>
+      List of all ratings
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new rating
+    </h2>
+
+    <form action="/insert_rating" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="beer_id_box">
+          Beer
+        </label>
+
+        <input type="text" id="beer_id_box" name="query_beer_id">
+      </div>
+
+      <div>
+        <label for="rating_box">
+          Rating
+        </label>
+
+        <input type="text" id="rating_box" name="query_rating">
+      </div>
+
+      <div>
+        <label for="rating_comments_box">
+          Rating comments
+        </label>
+
+        <input type="text" id="rating_comments_box" name="query_rating_comments">
+      </div>
+
+      <button>
+        Create rating
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Beer
+        </th>
+
+        <th>
+          Rating
+        </th>
+
+        <th>
+          Rating comments
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_ratings.each do |a_rating| %>
+      <tr>
+        <td>
+          <%= a_rating.id %>
+        </td>
+
+        <td>
+          <%= a_rating.user_id %>
+        </td>
+
+        <td>
+          <%= a_rating.beer_id %>
+        </td>
+
+        <td>
+          <%= a_rating.rating %>
+        </td>
+
+        <td>
+          <%= a_rating.rating_comments %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_rating.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_rating.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/ratings/<%= a_rating.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

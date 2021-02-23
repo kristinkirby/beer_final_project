@@ -10,7 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_23_203551) do
+ActiveRecord::Schema.define(version: 2021_02_23_215352) do
+
+  create_table "beers", force: :cascade do |t|
+    t.string "name"
+    t.integer "brewery_id"
+    t.string "abv"
+    t.string "ibu"
+    t.string "description"
+    t.string "image"
+    t.integer "style_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "breweries", force: :cascade do |t|
+    t.string "name"
+    t.string "location"
+    t.string "phone_number"
+    t.string "website"
+    t.string "logo_image"
+    t.string "description"
+    t.integer "beers_count"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "beer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "flags", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "beer_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "beer_id"
+    t.string "rating"
+    t.string "rating_comments"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "styles", force: :cascade do |t|
+    t.string "name"
+    t.string "origin"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"

@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Beer #<%= @the_beer.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/beers">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_beer/<%= @the_beer.id %>">
+          Delete beer
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_beer.name %>
+      </dd>
+
+      <dt>
+        Brewery
+      </dt>
+      <dd>
+        <%= @the_beer.brewery_id %>
+      </dd>
+
+      <dt>
+        Abv
+      </dt>
+      <dd>
+        <%= @the_beer.abv %>
+      </dd>
+
+      <dt>
+        Ibu
+      </dt>
+      <dd>
+        <%= @the_beer.ibu %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_beer.description %>
+      </dd>
+
+      <dt>
+        Image
+      </dt>
+      <dd>
+        <%= @the_beer.image %>
+      </dd>
+
+      <dt>
+        Style
+      </dt>
+      <dd>
+        <%= @the_beer.style_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_beer.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_beer.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit beer
+    </h2>
+
+    <form action="/modify_beer/<%= @the_beer.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_beer.name %>">
+      </div>
+
+      <div>
+        <label for="brewery_id_box">
+          Brewery
+        </label>
+
+        <input type="text" id="brewery_id_box" name="query_brewery_id" value="<%= @the_beer.brewery_id %>">
+      </div>
+
+      <div>
+        <label for="abv_box">
+          Abv
+        </label>
+
+        <input type="text" id="abv_box" name="query_abv" value="<%= @the_beer.abv %>">
+      </div>
+
+      <div>
+        <label for="ibu_box">
+          Ibu
+        </label>
+
+        <input type="text" id="ibu_box" name="query_ibu" value="<%= @the_beer.ibu %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_beer.description %>">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image" value="<%= @the_beer.image %>">
+      </div>
+
+      <div>
+        <label for="style_id_box">
+          Style
+        </label>
+
+        <input type="text" id="style_id_box" name="query_style_id" value="<%= @the_beer.style_id %>">
+      </div>
+
+      <button>
+        Update beer
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

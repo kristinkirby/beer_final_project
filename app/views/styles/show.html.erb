@@ -1,0 +1,101 @@
+<div>
+  <div>
+    <h1>
+      Style #<%= @the_style.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/styles">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_style/<%= @the_style.id %>">
+          Delete style
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_style.name %>
+      </dd>
+
+      <dt>
+        Origin
+      </dt>
+      <dd>
+        <%= @the_style.origin %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_style.description %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_style.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_style.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit style
+    </h2>
+
+    <form action="/modify_style/<%= @the_style.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_style.name %>">
+      </div>
+
+      <div>
+        <label for="origin_box">
+          Origin
+        </label>
+
+        <input type="text" id="origin_box" name="query_origin" value="<%= @the_style.origin %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_style.description %>">
+      </div>
+
+      <button>
+        Update style
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

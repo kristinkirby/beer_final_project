@@ -1,0 +1,102 @@
+<div>
+  <div>
+    <h1>
+      List of all flags
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new flag
+    </h2>
+
+    <form action="/insert_flag" method="post">
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id">
+      </div>
+
+      <div>
+        <label for="beer_id_box">
+          Beer
+        </label>
+
+        <input type="text" id="beer_id_box" name="query_beer_id">
+      </div>
+
+      <button>
+        Create flag
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          User
+        </th>
+
+        <th>
+          Beer
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_flags.each do |a_flag| %>
+      <tr>
+        <td>
+          <%= a_flag.id %>
+        </td>
+
+        <td>
+          <%= a_flag.user_id %>
+        </td>
+
+        <td>
+          <%= a_flag.beer_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_flag.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_flag.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/flags/<%= a_flag.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

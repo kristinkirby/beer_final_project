@@ -1,0 +1,161 @@
+<div>
+  <div>
+    <h1>
+      Brewery #<%= @the_brewery.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/breweries">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_brewery/<%= @the_brewery.id %>">
+          Delete brewery
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Name
+      </dt>
+      <dd>
+        <%= @the_brewery.name %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @the_brewery.location %>
+      </dd>
+
+      <dt>
+        Phone number
+      </dt>
+      <dd>
+        <%= @the_brewery.phone_number %>
+      </dd>
+
+      <dt>
+        Website
+      </dt>
+      <dd>
+        <%= @the_brewery.website %>
+      </dd>
+
+      <dt>
+        Logo image
+      </dt>
+      <dd>
+        <%= @the_brewery.logo_image %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_brewery.description %>
+      </dd>
+
+      <dt>
+        Beers count
+      </dt>
+      <dd>
+        <%= @the_brewery.beers_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_brewery.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_brewery.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit brewery
+    </h2>
+
+    <form action="/modify_brewery/<%= @the_brewery.id %>"  method="post" >
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name" value="<%= @the_brewery.name %>">
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" value="<%= @the_brewery.location %>">
+      </div>
+
+      <div>
+        <label for="phone_number_box">
+          Phone number
+        </label>
+
+        <input type="text" id="phone_number_box" name="query_phone_number" value="<%= @the_brewery.phone_number %>">
+      </div>
+
+      <div>
+        <label for="website_box">
+          Website
+        </label>
+
+        <input type="text" id="website_box" name="query_website" value="<%= @the_brewery.website %>">
+      </div>
+
+      <div>
+        <label for="logo_image_box">
+          Logo image
+        </label>
+
+        <input type="text" id="logo_image_box" name="query_logo_image" value="<%= @the_brewery.logo_image %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description" value="<%= @the_brewery.description %>">
+      </div>
+
+      <div>
+        <label for="beers_count_box">
+          Beers count
+        </label>
+
+        <input type="text" id="beers_count_box" name="query_beers_count" value="<%= @the_brewery.beers_count %>">
+      </div>
+
+      <button>
+        Update brewery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

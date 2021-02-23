@@ -1,0 +1,116 @@
+<div>
+  <div>
+    <h1>
+      Rating #<%= @the_rating.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/ratings">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_rating/<%= @the_rating.id %>">
+          Delete rating
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_rating.user_id %>
+      </dd>
+
+      <dt>
+        Beer
+      </dt>
+      <dd>
+        <%= @the_rating.beer_id %>
+      </dd>
+
+      <dt>
+        Rating
+      </dt>
+      <dd>
+        <%= @the_rating.rating %>
+      </dd>
+
+      <dt>
+        Rating comments
+      </dt>
+      <dd>
+        <%= @the_rating.rating_comments %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_rating.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_rating.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit rating
+    </h2>
+
+    <form action="/modify_rating/<%= @the_rating.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_rating.user_id %>">
+      </div>
+
+      <div>
+        <label for="beer_id_box">
+          Beer
+        </label>
+
+        <input type="text" id="beer_id_box" name="query_beer_id" value="<%= @the_rating.beer_id %>">
+      </div>
+
+      <div>
+        <label for="rating_box">
+          Rating
+        </label>
+
+        <input type="text" id="rating_box" name="query_rating" value="<%= @the_rating.rating %>">
+      </div>
+
+      <div>
+        <label for="rating_comments_box">
+          Rating comments
+        </label>
+
+        <input type="text" id="rating_comments_box" name="query_rating_comments" value="<%= @the_rating.rating_comments %>">
+      </div>
+
+      <button>
+        Update rating
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>

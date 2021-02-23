@@ -1,0 +1,182 @@
+<div>
+  <div>
+    <h1>
+      List of all breweries
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new brewery
+    </h2>
+
+    <form action="/insert_brewery" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location">
+      </div>
+
+      <div>
+        <label for="phone_number_box">
+          Phone number
+        </label>
+
+        <input type="text" id="phone_number_box" name="query_phone_number">
+      </div>
+
+      <div>
+        <label for="website_box">
+          Website
+        </label>
+
+        <input type="text" id="website_box" name="query_website">
+      </div>
+
+      <div>
+        <label for="logo_image_box">
+          Logo image
+        </label>
+
+        <input type="text" id="logo_image_box" name="query_logo_image">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="beers_count_box">
+          Beers count
+        </label>
+
+        <input type="text" id="beers_count_box" name="query_beers_count">
+      </div>
+
+      <button>
+        Create brewery
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Location
+        </th>
+
+        <th>
+          Phone number
+        </th>
+
+        <th>
+          Website
+        </th>
+
+        <th>
+          Logo image
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Beers count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_breweries.each do |a_brewery| %>
+      <tr>
+        <td>
+          <%= a_brewery.id %>
+        </td>
+
+        <td>
+          <%= a_brewery.name %>
+        </td>
+
+        <td>
+          <%= a_brewery.location %>
+        </td>
+
+        <td>
+          <%= a_brewery.phone_number %>
+        </td>
+
+        <td>
+          <%= a_brewery.website %>
+        </td>
+
+        <td>
+          <%= a_brewery.logo_image %>
+        </td>
+
+        <td>
+          <%= a_brewery.description %>
+        </td>
+
+        <td>
+          <%= a_brewery.beers_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_brewery.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_brewery.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/breweries/<%= a_brewery.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

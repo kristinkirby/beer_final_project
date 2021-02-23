@@ -1,0 +1,182 @@
+<div>
+  <div>
+    <h1>
+      List of all beers
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new beer
+    </h2>
+
+    <form action="/insert_beer" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="brewery_id_box">
+          Brewery
+        </label>
+
+        <input type="text" id="brewery_id_box" name="query_brewery_id">
+      </div>
+
+      <div>
+        <label for="abv_box">
+          Abv
+        </label>
+
+        <input type="text" id="abv_box" name="query_abv">
+      </div>
+
+      <div>
+        <label for="ibu_box">
+          Ibu
+        </label>
+
+        <input type="text" id="ibu_box" name="query_ibu">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <input type="text" id="description_box" name="query_description">
+      </div>
+
+      <div>
+        <label for="image_box">
+          Image
+        </label>
+
+        <input type="text" id="image_box" name="query_image">
+      </div>
+
+      <div>
+        <label for="style_id_box">
+          Style
+        </label>
+
+        <input type="text" id="style_id_box" name="query_style_id">
+      </div>
+
+      <button>
+        Create beer
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table>
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Brewery
+        </th>
+
+        <th>
+          Abv
+        </th>
+
+        <th>
+          Ibu
+        </th>
+
+        <th>
+          Description
+        </th>
+
+        <th>
+          Image
+        </th>
+
+        <th>
+          Style
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_beers.each do |a_beer| %>
+      <tr>
+        <td>
+          <%= a_beer.id %>
+        </td>
+
+        <td>
+          <%= a_beer.name %>
+        </td>
+
+        <td>
+          <%= a_beer.brewery_id %>
+        </td>
+
+        <td>
+          <%= a_beer.abv %>
+        </td>
+
+        <td>
+          <%= a_beer.ibu %>
+        </td>
+
+        <td>
+          <%= a_beer.description %>
+        </td>
+
+        <td>
+          <%= a_beer.image %>
+        </td>
+
+        <td>
+          <%= a_beer.style_id %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_beer.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_beer.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/beers/<%= a_beer.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>

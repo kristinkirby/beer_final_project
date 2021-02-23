@@ -1,0 +1,86 @@
+<div>
+  <div>
+    <h1>
+      Flag #<%= @the_flag.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/flags">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_flag/<%= @the_flag.id %>">
+          Delete flag
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        User
+      </dt>
+      <dd>
+        <%= @the_flag.user_id %>
+      </dd>
+
+      <dt>
+        Beer
+      </dt>
+      <dd>
+        <%= @the_flag.beer_id %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_flag.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_flag.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit flag
+    </h2>
+
+    <form action="/modify_flag/<%= @the_flag.id %>"  method="post" >
+      <div>
+        <label for="user_id_box">
+          User
+        </label>
+
+        <input type="text" id="user_id_box" name="query_user_id" value="<%= @the_flag.user_id %>">
+      </div>
+
+      <div>
+        <label for="beer_id_box">
+          Beer
+        </label>
+
+        <input type="text" id="beer_id_box" name="query_beer_id" value="<%= @the_flag.beer_id %>">
+      </div>
+
+      <button>
+        Update flag
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
