@@ -1,16 +1,14 @@
 Rails.application.routes.draw do
+  
   # Routes for the Flag resource:
-
   # CREATE
   post("/insert_flag", { :controller => "flags", :action => "create" })
           
   # READ
   get("/flags", { :controller => "flags", :action => "index" })
-  
   get("/flags/:path_id", { :controller => "flags", :action => "show" })
   
   # UPDATE
-  
   post("/modify_flag/:path_id", { :controller => "flags", :action => "update" })
   
   # DELETE

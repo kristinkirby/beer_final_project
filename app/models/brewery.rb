@@ -3,6 +3,7 @@
 # Table name: breweries
 #
 #  id           :integer          not null, primary key
+#  banner_image :string
 #  beers_count  :integer
 #  description  :string
 #  location     :string
