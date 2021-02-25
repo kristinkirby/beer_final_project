@@ -78,6 +78,166 @@
   </div>
 </div>
 
+<div></div>
+
+<% b = @list_of_beers.first%>
+
+<div class = "container">
+<div class="card">
+  <div class="row">
+    <div class="col-md-3">
+      <img src = <%= b.image%> class ="table_img">
+    </div>
+    <div class="col-md-9">
+      <div class="card-body">
+        <div class = "col-md-4">
+          <%= b.name %>
+          <div></div>
+          <%= b.brewery.name%>
+        </div>
+        <div class = "col-md-3">
+          <ul class = "list-group list-group-flush">
+            <li class="list-group-item">ABV: <%=b.abv%></li>
+            <li class="list-group-item">IBU: <%=b.ibu%></li>
+            <li class="list-group-item">Style: BLANK</li>
+          </ul>
+        </div>
+        <div class = "col-md-3">
+          ratings
+        </div>
+        <div class = "col-md-1">
+          heart
+        </div>
+        <div class = "col-md-1">
+          flag
+        </div>
+      </div>
+      <div class="card-body">
+        <div class = "col">
+          <%=b.description%>
+        </div>
+      </div>
+        
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<hr>
+
+<div class = "container" style = "border: thin red solid">
+  <div class = "row">
+    <div class = "col-md-3">
+      <img src = <%= @list_of_beers.first.image%> class ="table_img">
+    </div>
+
+
+    <div class = "col-md-9" style = "border: thin red sold">
+      
+      <div class = "row" style = "border: thin green dashed">
+        <div class = "col-md-4">
+          <%=@list_of_beers.first.name%> 
+          <div></div>
+          <%=@list_of_beers.first.brewery.name%> 
+        </div>
+        <div class = "col-md-3">
+          other info
+        </div>
+        <div class = "col-md-3">
+          rating info
+        </div>
+        <div class = "col-md-1">
+          heart
+        </div>
+        <div class = "col-md-1">
+          flag
+        </div>
+      </div>
+
+      <div class = "row align-items-end"  style = "border: thin green dashed">
+        <div class = "col">
+          <%=@list_of_beers.first.description%> 
+        </div>
+      </div>
+    
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<div class = "container" style = "border: thin red solid">
+  <div class = "row">
+    <div class = "col-md-3">
+      <img src = <%= @list_of_beers.first.image%> class ="table_img">
+    </div>
+
+    <div class = "col-md-3">
+      <%=@list_of_beers.first.name%> 
+      
+      <%=@list_of_beers.first.brewery.name%>      
+    </div>
+
+    <div class = "col-md-2">
+      info
+    </div>
+    <div class = "col-md-2">
+      Avg rating and your rating
+    </div>
+    <div class = "col-md-1">
+      heart 
+    </div>
+    <div class = "col-md-1">
+      flag
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <hr>
 <div>
   <div>
