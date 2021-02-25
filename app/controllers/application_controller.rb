@@ -27,6 +27,9 @@ class ApplicationController < ActionController::Base
     the_id = session[:user_id]
     @current_user = User.where({ :id => the_id }).first
 
+    @beers = Beer.all 
+    @breweries = Brewery.all
+
     render(:template => "testpage.html.erb")
   end 
 

@@ -1,4 +1,58 @@
-<div> Welcome <%= session.fetch(:display_name)%> ! </div>
+<h1> Welcome <%= session.fetch(:display_name)%> ! </h1>
+
+
+<h2>Breweries</h2>
+<div> Let's look at some breweries! </div>
+
+
+<table border = "1">
+  <tr>
+    <th>Name</th>
+    <th>Logo</th>
+    <th>Website</th>
+    <th>Phone number</th>
+    <th>Location</th>
+    <!--<th>Description</th>-->
+  </tr>
+
+  <% @breweries.each do |br| %>
+    <tr>
+      <td><%=br.name%></td>
+      <td><img src = <%=br.logo_image%> class = "img-thumbnail"></td>
+      <td><a href=<%=br.website%>><%=br.website%></a></td>
+      <td><%=br.phone_number%></td>
+      <td><%=br.location%></td>
+      <!--<td><%=br.description%></td>-->
+    </tr>
+  <% end %>
+</table>
+
+<hr>
+
+<h2>Beers</h2>
+<div>And now let's look at the beers we have right now! </div>
+
+<table border = "1">
+  <tr>
+    <th>Image</th>
+    <th>Name</th>
+    <th>Brewery</th>
+    <th>ABV</th>
+    <th>IBU</th>
+    <th>Description</th>
+  </tr>
+
+  <% @beers.each do |b| %>
+    <tr>
+      <td><img src = <%=b.image%> class = "img-thumbnail"></td>
+      <td><%=b.name%></td>
+      <td><%=b.brewery.name%></td>
+      <td><%=b.abv%></td>
+      <td><%=b.ibu%></td>
+      <td><%=b.description%></td>
+    </tr>
+  <% end %>
+</table>
 
 
 

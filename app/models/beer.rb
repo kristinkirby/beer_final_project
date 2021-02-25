@@ -22,4 +22,5 @@ class Beer < ApplicationRecord
   belongs_to(:style, { :required => false, :class_name => "Style", :foreign_key => "style_id" })
 
 
+
 end

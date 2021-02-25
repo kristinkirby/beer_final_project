@@ -12,3 +12,13 @@
  *
  *= require_self
  */
+
+ body {
+  font-family: 'Noto Sans', sans-serif;
+ }
+
+
+ .table_img {
+   height: 200px; 
+   width: 200px; 
+ }
