@@ -16,15 +16,15 @@
     <div class="row">
 
       <div class="col-md-3">
-        <img src = <%= b.image%> class ="table_img">
+        <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
       </div> <!-- close col md 3 -->
 
       <div class="col-md-9" >
         <div class ="row">
           <div class = "col-md-4 align-self-center">
-            <%= b.name %>
+            <a href="/beers/<%=b.id%>"><h4><%= b.name %></h4></a>
             <br>
-            <%= b.brewery.name%>
+            <a href="/breweries/<%=b.brewery.id%>"><h5><%= b.brewery.name%></h5></a>
           </div>
           <div class = "col-md-3 align-self-center">
             ABV: <%=b.abv%>
@@ -34,9 +34,9 @@
             Style: BLANK
           </div>
           <div class = "col-md-3 align-self-center">
-            Avg. Rating: 
+            Avg. Rating: <%=b.avg_rating(false) %>
             <br>
-            Your Rating:
+            Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
             <br>
             Update Rating
           </div>
