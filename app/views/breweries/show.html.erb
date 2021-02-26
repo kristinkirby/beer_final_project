@@ -1,3 +1,5 @@
+
+<!-- Top Banner -->
 <div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
     
     <div class = "container" style="padding: 10px">
@@ -117,29 +119,68 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <!-- side stuff-->
     <div class = "col-md-3">
       <!-- map box-->
       <div class = "row">
         <h5>Map</h5>
+            
+          <div>
+            <div id="map" style='width: 400px; height: 400px;'></div>
+          </div>
+
+          <script>
+            function initMap() {
+              const brewery = {lat: <%=@lat%>, lng: <%=@lng%>};
+              var mapDiv = document.getElementById('map');
+              var map = new google.maps.Map(mapDiv, {zoom: 13, center: brewery});
+              var bounds = new google.maps.LatLngBounds();            
+              var infowindow = new google.maps.InfoWindow({
+                content: "<b><%= @the_brewery.name %></b>"
+              });
+              
+              var marker = new google.maps.Marker({
+                position: brewery,
+                map: map,
+                title: "<%=@the_brewery.name%>",
+                icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png' 
+              });
+              
+              marker.addListener('click', function() {
+                infowindow.open(map, marker);
+              });
+
+            //bounds.extend(new google.maps.LatLng(<%=@lat%>, <%=@lng%>));
+
+            //map.fitBounds(bounds);
+            };
+            
+          </script>
+          <script src="https://maps.googleapis.com/maps/api/js?key=<%=ENV.fetch("GOOGLE_MAPS_KEY")%>&callback=initMap"
+          async defer></script>
+
+
+
+
+
+
+
       </div> <!-- end of map box-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
       <!-- other info box-->
       <div class ="row">

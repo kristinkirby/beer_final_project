@@ -13,7 +13,13 @@ class BreweriesController < ApplicationController
     matching_breweries = Brewery.where({ :id => the_id })
 
     @the_brewery = matching_breweries.at(0)
-        
+
+    # lat and long for map embedding
+    url = "https://maps.googleapis.com/maps/api/geocode/json?address=" + 
+          CGI.escape(@the_brewery.location) + "&key=" + ENV.fetch("GOOGLE_MAPS_KEY")
+    map_data = JSON.parse(open(url).read).fetch("results").at(0).fetch("geometry").fetch("location")
+    @lat = map_data.fetch("lat")
+    @lng = map_data.fetch("lng")       
     
     render({ :template => "breweries/show.html.erb" })
   end
