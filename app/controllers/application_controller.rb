@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
     @beers = Beer.all 
     @breweries = Brewery.all
 
+    @beers_of_the_day = Beer.all.sample(3)
+
     render(:template => "testpage.html.erb")
   end 
 
