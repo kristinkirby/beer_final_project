@@ -17,4 +17,6 @@
 class Brewery < ApplicationRecord
 
   has_many(:beers, { :class_name => "Beer", :foreign_key => "brewery_id", :dependent => :destroy })
+  has_many(:ratings, through: :beers)
+
 end

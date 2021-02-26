@@ -1,3 +1,269 @@
+<div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
+    
+    <div class = "container" style="padding: 10px">
+      <div class = "row align-items-center">
+        
+        <!--pic -->
+        <div class = "col-md-4">
+          <img class = "profile-pic img-thumbnail" style
+              src = <%= @the_brewery.logo_image%>>
+        </div>
+
+        <!--info-->
+        <div class = "col-md-6 banner-info">
+        <h2><%=@the_brewery.name%></h2>
+        <br>
+        <i class="fas fa-phone-volume"></i> : <%= @the_brewery.phone_number %>
+            <br>
+            <i class="fas fa-desktop"></i>: <a href=<%=@the_brewery.website%>><%=@the_brewery.website%></a>
+            <br>
+            <i class="fas fa-map-marked-alt"></i>: 
+                <a href="https://www.google.com/maps/dir/?api=1&destination=<%=CGI.escape(@the_brewery.location)%>"
+                target="_blank" rel="noopener noreferrer">
+                <%=@the_brewery.location%>
+                </a>
+        <br><br>
+        <i class="fas fa-beer"></i> <%=@the_brewery.beers_count%> Beers |              
+        <i class="fas fa-star"></i> ##.## Average Rating     
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Description container -->
+<div class = "container banner-info"> 
+  <%= @the_brewery.description %>
+</div> 
+
+<!-- ratings and other info container -->
+<div class = "container">
+  <div class = "row">
+    
+    <!-- ratings cards-->
+    <div class = "col-md-9">
+      <h4><%=@the_brewery.name%> Ratings</h4>
+
+      <% @beers.each do |b| %>
+
+        <div class = "container" style = "padding: 4px">
+          <div class="card">
+            <div class="row">
+
+              <div class="col-md-3">
+                <img src = <%= b.image%> class ="table_img">
+              </div> <!-- close col md 3 -->
+
+              <div class="col-md-9" >
+                <div class ="row">
+                  <div class = "col-md-4 align-self-center">
+                    <%= b.name %>
+                    <br>
+                    <%= b.style_id%>
+                  </div>
+                  <div class = "col-md-3 align-self-center">
+                    ABV: <%=b.abv%>
+                    <br>
+                    IBU: <%=b.ibu%>
+                    <br>
+                    Style: BLANK
+                  </div>
+                  <div class = "col-md-3 align-self-center">
+                    Avg. Rating:  b.avg_rating(false) 
+                    <br>
+                    Your Rating: 
+                    <br>
+                    Update Rating
+                  </div>
+                  <div class = "col-md-1 align-self-center">
+                    <i class="far fa-heart" style="font-size: 2em"></i>
+                  </div>
+                  <div class = "col-md-1 align-self-center">
+                    <i class="far fa-bookmark" style="font-size: 2em"></i>
+                  </div>
+                </div>
+                <hr>
+                <div class = "row">
+                  <div class = "col">
+                    <%=b.description%>
+                  </div>
+                </div>
+                
+              </div> <!-- close col md 9 -->
+
+
+            </div> <!-- close row-->
+          </div> <!-- close card-->
+        </div> <!-- close container-->  
+
+      <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </div> <!-- end of ratings cards-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- side stuff-->
+    <div class = "col-md-3">
+      <!-- map box-->
+      <div class = "row">
+        <h5>Map</h5>
+      </div> <!-- end of map box-->
+
+      <!-- other info box-->
+      <div class ="row">
+        <h5>Some other info box</h5>
+      </div> <!-- end of other info box -->
+        
+    </div> <!--end of side stuff-->
+
+
+  
+  </div> <!-- end of main row -->
+
+</div> <!-- end of container--> 
+
+
+
+
+<!--<div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
+    <div class = "container" style="padding: 10px">
+      <div class = "row align-items-center">
+        <div class = "col-md-4">
+          <img class = "profile-pic img-thumbnail" style
+              src = <%= @the_brewery.logo_image%>>
+        </div>
+      </div>
+  </div>
+</div>
+-->
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
+
+<!--Banner with user info-->
+<div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
+  
+  <div class = "container" style="padding: 10px; opacity: 1;">
+    <div class = "row align-items-center">
+      
+      <!-- pic -->
+      <div class = "col-md-4">
+        <img class = "profile-pic"
+            src = <%= @the_brewery.logo_image%>>
+      </div>
+  
+      <!-- info -->
+      <div class = "col-md-4">
+        <h2><%=@the_brewery.name%></h2>
+        <br>
+        <i class="fas fa-phone-volume"></i> : <%= @the_brewery.phone_number %>
+            <br>
+            <i class="fas fa-desktop"></i>: <a href=<%=@the_brewery.website%>><%=@the_brewery.website%></a>
+            <br>
+            <i class="fas fa-map-marked-alt"></i>: 
+                <a href="https://www.google.com/maps/dir/?api=1&destination=<%=CGI.escape(@the_brewery.location)%>"
+                target="_blank" rel="noopener noreferrer">
+                <%=@the_brewery.location%>
+                </a>
+        <br>
+        <i class="fas fa-beer"></i> <%=@the_brewery.beers_count%> Beers |              
+        <i class="fas fa-star"></i> ##.## Average Rating     
+      </div>
+
+      <!-- description --> 
+      <div class = "col-md-4">
+        <!--<%= @the_brewery.description %>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+
+<!-- Ratings and others -->
+<div class = "container"> 
+  <div class = "row">
+    <div class = "col-md-9">
+      <div class = "card">Your Ratings</div>
+    </div>
+
+    <div class = "col-md-3">
+      <div class = "row">
+        <div class ="card">Favorites</div>
+      </div>
+
+      <div class = "row">
+        <div class="card">Must-Try Beers</div>
+      </div>
+    </div>
+  
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<hr>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <div>
   <div>
     <h1>
