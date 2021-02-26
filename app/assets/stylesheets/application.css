@@ -17,12 +17,16 @@
   font-family: 'Noto Sans', sans-serif;
  }
 
-
+ * { 
+   /* border: thin red solid; */
+ }
  .table_img {
    height: 200px; 
    width: 200px; 
  }
 
- .user_pic_circle {
-  height: auto; 
+ .user_img_sm {
+  max-height: 45px; 
+  max-width: 45px;
+  padding: none; 
  }
