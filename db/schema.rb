@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_184327) do
+ActiveRecord::Schema.define(version: 2021_02_26_222038) do
 
   create_table "beers", force: :cascade do |t|
     t.string "name"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 2021_02_25_184327) do
   create_table "ratings", force: :cascade do |t|
     t.integer "user_id"
     t.integer "beer_id"
-    t.string "rating"
+    t.float "rating"
     t.string "rating_comments"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

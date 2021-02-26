@@ -43,7 +43,7 @@
     <div class = "col-md-9">
       <h4><%=@the_brewery.name%> Ratings</h4>
 
-      <% @beers.each do |b| %>
+      <% @the_brewery.beers.each do |b| %>
 
         <div class = "container" style = "padding: 4px">
           <div class="card">
@@ -68,9 +68,9 @@
                     Style: BLANK
                   </div>
                   <div class = "col-md-3 align-self-center">
-                    Avg. Rating:  b.avg_rating(false) 
+                    Avg. Rating: <%=b.avg_rating(false) %>
                     <br>
-                    Your Rating: 
+                    Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
                     <br>
                     Update Rating
                   </div>

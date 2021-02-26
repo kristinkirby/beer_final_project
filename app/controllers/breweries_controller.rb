@@ -13,9 +13,8 @@ class BreweriesController < ApplicationController
     matching_breweries = Brewery.where({ :id => the_id })
 
     @the_brewery = matching_breweries.at(0)
-    @beers = @the_brewery.beers
-    @user_ratings = Rating.where({:user_id => session.fetch(:user_id)})
-
+        
+    
     render({ :template => "breweries/show.html.erb" })
   end
 

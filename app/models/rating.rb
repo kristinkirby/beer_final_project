@@ -3,7 +3,7 @@
 # Table name: ratings
 #
 #  id              :integer          not null, primary key
-#  rating          :string
+#  rating          :float
 #  rating_comments :string
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null

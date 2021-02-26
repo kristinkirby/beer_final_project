@@ -21,18 +21,23 @@ class Beer < ApplicationRecord
   belongs_to(:brewery, { :required => false, :class_name => "Brewery", :foreign_key => "brewery_id", :counter_cache => true })
   belongs_to(:style, { :required => false, :class_name => "Style", :foreign_key => "style_id" })
 
-  # def avg_rating(by_user)
-  #   rating = self.ratings
-  #   if by_user
-  #     rating = rating.where({:user_id => session.fetch(:user_id)})
-  #   end
+  def avg_rating(user_id)
+    rating = self.ratings
+    if user_id
+      rating = rating.where({:user_id => user_id})
+    end
 
-  #   values = rating.map_relation_to_array(:rating)
+    values = rating.map_relation_to_array(:rating)
 
-  #   avg = values.sum / values.count
-  #   return avg
+    if values.present?
+      avg = values.sum / values.count
+      return avg
+    else
+      avg = "N/A"
+      return avg
+    end
 
-  # end 
+  end 
 
 
 end
