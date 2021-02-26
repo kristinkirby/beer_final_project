@@ -17,9 +17,10 @@
   font-family: 'Noto Sans', sans-serif;
  }
 
- * { 
-   /* border: thin red solid; */
- }
+ /* * { 
+   border: thin red solid;
+ }*/
+ 
  .table_img {
    height: 200px; 
    width: 200px; 
@@ -30,3 +31,12 @@
   max-width: 45px;
   padding: none; 
  }
+
+
+.profile-pic {
+    width: 250px;
+    height: 250px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}

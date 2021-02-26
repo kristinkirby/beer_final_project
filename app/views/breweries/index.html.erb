@@ -8,10 +8,59 @@
 
 <hr>
 
+
+<% @list_of_breweries.each do |br| %>
+<div class = "container" style = "padding: 4px">
+  <div class="card">
+    <div class="row">
+
+      <div class="col-md-3">
+        <img src = <%= br.logo_image%> class ="table_img">
+      </div> <!-- close col md 3 -->
+
+      <div class="col-md-9" >
+        <div class ="row">
+          <div class = "col-md-6 align-self-center">
+            <h3><%= br.name %></h3>
+          </div>
+          
+          <div class = "col-md-6 align-self-center">
+            <i class="fas fa-phone-volume"></i> : <%= br.phone_number %>
+            <br>
+            <i class="fas fa-desktop"></i>: <a href=<%=br.website%>><%=br.website%></a>
+            <br>
+            <i class="fas fa-map-marked-alt"></i>: 
+                <a href="https://www.google.com/maps/dir/?api=1&destination=<%=CGI.escape(br.location)%>"
+                target="_blank" rel="noopener noreferrer">
+                <%=br.location%>
+                </a>
+            
+          </div>
+          
+        </div>
+        <hr>
+        <div class = "row">
+          <div class = "col">
+            <%=br.description%>
+          </div>
+        </div>
+        
+      </div> <!-- close col md 9 -->
+
+
+    </div> <!-- close row-->
+  </div> <!-- close card-->
+</div> <!-- close container-->  
+<%end%>     
+
+<hr>
+<br>
+
+
 <div>
   <div>
     <h2>
-      Add a new brewery
+      Request a new brewery
     </h2>
 
     <form action="/insert_brewery" method="post">
@@ -77,106 +126,3 @@
     </form>
   </div>
 </div>
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Location
-        </th>
-
-        <th>
-          Phone number
-        </th>
-
-        <th>
-          Website
-        </th>
-
-        <th>
-          Logo image
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Beers count
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_breweries.each do |a_brewery| %>
-      <tr>
-        <td>
-          <%= a_brewery.id %>
-        </td>
-
-        <td>
-          <%= a_brewery.name %>
-        </td>
-
-        <td>
-          <%= a_brewery.location %>
-        </td>
-
-        <td>
-          <%= a_brewery.phone_number %>
-        </td>
-
-        <td>
-          <%= a_brewery.website %>
-        </td>
-
-        <td>
-          <%= a_brewery.logo_image %>
-        </td>
-
-        <td>
-          <%= a_brewery.description %>
-        </td>
-
-        <td>
-          <%= a_brewery.beers_count %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_brewery.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_brewery.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/breweries/<%= a_brewery.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>

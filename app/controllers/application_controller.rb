@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
 
     @beers = Beer.all 
     @breweries = Brewery.all
+    @users = User.all
 
     @beers_of_the_day = Beer.all.sample(3)
 

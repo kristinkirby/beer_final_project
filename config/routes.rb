@@ -78,6 +78,8 @@ Rails.application.routes.draw do
   get("/user_sign_out", { :controller => "user_authentication", :action => "destroy_cookies" })
   #------------------------------
   
+  # User profile
+  get("/users/:user_id", {:controller => "users", :action => "show_profile"})
 
 
 
