@@ -8,6 +8,68 @@
 
 <hr>
 
+
+
+<div></div>
+
+<!--<% b = @list_of_beers.first%>-->
+<% @list_of_beers.each do |b| %>
+<div class = "container" style = "padding: 4px">
+  <div class="card">
+    <div class="row">
+
+      <div class="col-md-3">
+        <img src = <%= b.image%> class ="table_img">
+      </div> <!-- close col md 3 -->
+
+      <div class="col-md-9" >
+        <div class ="row">
+          <div class = "col-md-4 align-self-center">
+            <%= b.name %>
+            <br>
+            <%= b.brewery.name%>
+          </div>
+          <div class = "col-md-3 align-self-center">
+            ABV: <%=b.abv%>
+            <br>
+            IBU: <%=b.ibu%>
+            <br>
+            Style: BLANK
+          </div>
+          <div class = "col-md-3 align-self-center">
+            Avg. Rating: 
+            <br>
+            Your Rating:
+            <br>
+            Update Rating
+          </div>
+          <div class = "col-md-1 align-self-center">
+            <i class="far fa-heart" style="font-size: 2em"></i>
+          </div>
+          <div class = "col-md-1 align-self-center">
+            <i class="far fa-bookmark" style="font-size: 2em"></i>
+          </div>
+        </div>
+        <hr>
+        <div class = "row">
+          <div class = "col">
+            <%=b.description%>
+          </div>
+        </div>
+        
+      </div> <!-- close col md 9 -->
+
+
+    </div> <!-- close row-->
+  </div> <!-- close card-->
+</div> <!-- close container-->
+      
+<%end%>     
+      
+
+<!-- Form for adding a new beer.... I think we want to remove for now!-->
+<hr>
+
 <div>
   <div>
     <h2>
@@ -77,266 +139,3 @@
     </form>
   </div>
 </div>
-
-<div></div>
-
-<% b = @list_of_beers.first%>
-
-<div class = "container">
-<div class="card">
-  <div class="row">
-    <div class="col-md-3">
-      <img src = <%= b.image%> class ="table_img">
-    </div>
-    <div class="col-md-9">
-      <div class="card-body">
-        <div class = "col-md-4">
-          <%= b.name %>
-          <div></div>
-          <%= b.brewery.name%>
-        </div>
-        <div class = "col-md-3">
-          <ul class = "list-group list-group-flush">
-            <li class="list-group-item">ABV: <%=b.abv%></li>
-            <li class="list-group-item">IBU: <%=b.ibu%></li>
-            <li class="list-group-item">Style: BLANK</li>
-          </ul>
-        </div>
-        <div class = "col-md-3">
-          ratings
-        </div>
-        <div class = "col-md-1">
-          heart
-        </div>
-        <div class = "col-md-1">
-          flag
-        </div>
-      </div>
-      <div class="card-body">
-        <div class = "col">
-          <%=b.description%>
-        </div>
-      </div>
-        
-    </div>
-  </div>
-</div>
-</div>
-
-
-
-<hr>
-
-<div class = "container" style = "border: thin red solid">
-  <div class = "row">
-    <div class = "col-md-3">
-      <img src = <%= @list_of_beers.first.image%> class ="table_img">
-    </div>
-
-
-    <div class = "col-md-9" style = "border: thin red sold">
-      
-      <div class = "row" style = "border: thin green dashed">
-        <div class = "col-md-4">
-          <%=@list_of_beers.first.name%> 
-          <div></div>
-          <%=@list_of_beers.first.brewery.name%> 
-        </div>
-        <div class = "col-md-3">
-          other info
-        </div>
-        <div class = "col-md-3">
-          rating info
-        </div>
-        <div class = "col-md-1">
-          heart
-        </div>
-        <div class = "col-md-1">
-          flag
-        </div>
-      </div>
-
-      <div class = "row align-items-end"  style = "border: thin green dashed">
-        <div class = "col">
-          <%=@list_of_beers.first.description%> 
-        </div>
-      </div>
-    
-    </div>
-  </div>
-</div>
-
-
-
-
-
-<hr>
-
-
-
-
-
-<div class = "container" style = "border: thin red solid">
-  <div class = "row">
-    <div class = "col-md-3">
-      <img src = <%= @list_of_beers.first.image%> class ="table_img">
-    </div>
-
-    <div class = "col-md-3">
-      <%=@list_of_beers.first.name%> 
-      
-      <%=@list_of_beers.first.brewery.name%>      
-    </div>
-
-    <div class = "col-md-2">
-      info
-    </div>
-    <div class = "col-md-2">
-      Avg rating and your rating
-    </div>
-    <div class = "col-md-1">
-      heart 
-    </div>
-    <div class = "col-md-1">
-      flag
-    </div>
-
-  </div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<hr>
-<div>
-  <div>
-    <table>
-      <tr>
-        <th>
-          ID
-        </th>
-
-        <th>
-          Name
-        </th>
-
-        <th>
-          Brewery
-        </th>
-
-        <th>
-          Abv
-        </th>
-
-        <th>
-          Ibu
-        </th>
-
-        <th>
-          Description
-        </th>
-
-        <th>
-          Image
-        </th>
-
-        <th>
-          Style
-        </th>
-
-        <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
-        </th>
-      </tr>
-
-      <% @list_of_beers.each do |a_beer| %>
-      <tr>
-        <td>
-          <%= a_beer.id %>
-        </td>
-
-        <td>
-          <%= a_beer.name %>
-        </td>
-
-        <td>
-          <%= a_beer.brewery_id %>
-        </td>
-
-        <td>
-          <%= a_beer.abv %>
-        </td>
-
-        <td>
-          <%= a_beer.ibu %>
-        </td>
-
-        <td>
-          <%= a_beer.description %>
-        </td>
-
-        <td>
-          <%= a_beer.image %>
-        </td>
-
-        <td>
-          <%= a_beer.style_id %>
-        </td>
-
-        <td>
-          <%= time_ago_in_words(a_beer.created_at) %> ago
-        </td>
-        <td>
-          <%= time_ago_in_words(a_beer.updated_at) %> ago
-        </td>
-
-        <td>
-          <a href="/beers/<%= a_beer.id %>">
-            Show details
-          </a>
-        </td>
-      </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
-
-<hr>
