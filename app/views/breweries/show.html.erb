@@ -17,7 +17,7 @@
         <br>
         <i class="fas fa-phone-volume"></i> : <%= @the_brewery.phone_number %>
             <br>
-            <i class="fas fa-desktop"></i>: <a href=<%=@the_brewery.website%>><%=@the_brewery.website%></a>
+            <i class="fas fa-desktop"></i>: <a target="_blank" rel="noopener noreferrer" href=<%=@the_brewery.website%>><%=@the_brewery.website%></a>
             <br>
             <i class="fas fa-map-marked-alt"></i>: 
                 <a href="https://www.google.com/maps/dir/?api=1&destination=<%=CGI.escape(@the_brewery.location)%>"
@@ -25,7 +25,7 @@
                 <%=@the_brewery.location%>
                 </a>
         <br><br>
-        <i class="fas fa-beer"></i> <%=@the_brewery.beers_count%> Beers |              
+        <i class="fas fa-beer"></i> <%=@the_brewery.beers.count%> Beers |              
         <i class="fas fa-star"></i> ##.## Average Rating     
       </div>
     </div>
@@ -52,13 +52,13 @@
             <div class="row">
 
               <div class="col-md-3">
-                <img src = <%= b.image%> class ="table_img">
+                <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
               </div> <!-- close col md 3 -->
 
               <div class="col-md-9" >
                 <div class ="row">
                   <div class = "col-md-4 align-self-center">
-                    <%= b.name %>
+                    <a href="/beers/<%=b.id%>"><%= b.name %></a>
                     <br>
                     <%= b.style_id%>
                   </div>

@@ -36,16 +36,69 @@
 <div class = "container"> 
   <div class = "row">
     <div class = "col-md-9">
-      <div class = "card">Your Ratings</div>
+      <div><h3>Your Ratings</h3></div>
+
+      <% @user.beers.each do |b| %>
+        <div class = "container" style = "padding: 4px">
+          <div class="card">
+            <div class="row">
+
+              <div class="col-md-3">
+                <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
+              </div> <!-- close col md 3 -->
+
+              <div class="col-md-9" >
+                <div class ="row">
+                  <div class = "col-md-4 align-self-center">
+                    <a href="/beers/<%=b.id%>"><h3><%= b.name %></h3></a>
+                    <br>
+                    <a href="/breweries/<%=b.brewery.id%>"><h6><%= b.brewery.name%></h6></a>
+                  </div>
+                  <div class = "col-md-3 align-self-center">
+                    ABV: <%=b.abv%>
+                    <br>
+                    IBU: <%=b.ibu%>
+                    <br>
+                    Style: BLANK
+                  </div>
+                  <div class = "col-md-3 align-self-center">
+                    Avg. Rating: <%=b.avg_rating(false) %>
+                    <br>
+                    Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
+                    <br>
+                    Update Rating
+                  </div>
+                  <div class = "col-md-1 align-self-center">
+                    <i class="far fa-heart" style="font-size: 2em"></i>
+                  </div>
+                  <div class = "col-md-1 align-self-center">
+                    <i class="far fa-bookmark" style="font-size: 2em"></i>
+                  </div>
+                </div>
+                <hr>
+                <div class = "row">
+                  <div class = "col">
+                    <%=b.ratings.where({:user_id => session.fetch(:user_id)}).first.rating_comments%>
+                  </div>
+                </div>
+                
+              </div> <!-- close col md 9 -->
+
+
+            </div> <!-- close row-->
+          </div> <!-- close card-->
+        </div> <!-- close container-->  
+      <%end%>     
+
     </div>
 
     <div class = "col-md-3">
       <div class = "row">
-        <div class ="card">Favorites</div>
+        <div class ="card"><h3>Favorites</h3></div>
       </div>
 
       <div class = "row">
-        <div class="card">Must-Try Beers</div>
+        <div class="card"><h3>Must-Try Beers</h3></div>
       </div>
     </div>
   
