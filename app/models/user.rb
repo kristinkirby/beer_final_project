@@ -22,4 +22,18 @@ class User < ApplicationRecord
   has_many(:favorites, { :class_name => "Favorite", :foreign_key => "user_id", :dependent => :destroy })
   has_many(:flags, { :class_name => "Flag", :foreign_key => "user_id", :dependent => :destroy })
 
+
+  def avg_rating
+    rating = self.ratings
+    values = rating.map_relation_to_array(:rating)
+
+    if values.present?
+      avg = values.sum / values.count
+      return avg
+    else
+      avg = "N/A"
+      return avg
+    end
+  end 
+
 end

@@ -60,15 +60,14 @@
     <table>
       <tr>
         <th>
-          ID
-        </th>
-
-        <th>
           User
         </th>
 
         <th>
           Beer
+        </th>
+        <th>
+          Brewery
         </th>
 
         <th>
@@ -80,29 +79,22 @@
         </th>
 
         <th>
-          Created at
-        </th>
-
-        <th>
-          Updated at
-        </th>
-
-        <th>
+          Posted at
         </th>
       </tr>
 
       <% @list_of_ratings.each do |a_rating| %>
       <tr>
+        
         <td>
-          <%= a_rating.id %>
+          <a href="/users/<%=a_rating.user.id%>"><%= a_rating.user.display_name %></a>
         </td>
 
         <td>
-          <%= a_rating.user_id %>
+          <%= a_rating.beer.name %>
         </td>
-
         <td>
-          <%= a_rating.beer_id %>
+          <%= a_rating.beer.brewery.name %>
         </td>
 
         <td>
@@ -114,17 +106,10 @@
         </td>
 
         <td>
-          <%= time_ago_in_words(a_rating.created_at) %> ago
-        </td>
-        <td>
           <%= time_ago_in_words(a_rating.updated_at) %> ago
         </td>
 
-        <td>
-          <a href="/ratings/<%= a_rating.id %>">
-            Show details
-          </a>
-        </td>
+      
       </tr>
       <% end %>
     </table>
