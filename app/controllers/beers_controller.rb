@@ -1,17 +1,21 @@
 class BeersController < ApplicationController
+
+  # def favorite
+  #   @beer = Beer.all.find(params[:id])
+  #   Favorite.create(user_id: @current_user.id, beer_id: @beer.id) 
+  #   redirect_to post_path(@beer)
+  # end 
+
+
   def index
     matching_beers = Beer.all
-
     @list_of_beers = matching_beers.order({ :created_at => :desc })
-
     render({ :template => "beers/index.html.erb" })
   end
 
   def show
     the_id = params.fetch("path_id")
-
     matching_beers = Beer.where({ :id => the_id })
-
     @the_beer = matching_beers.at(0)
 
     # check to see if user has already rated the beer

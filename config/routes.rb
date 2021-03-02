@@ -111,6 +111,8 @@ Rails.application.routes.draw do
 
   # CREATE
   post("/insert_favorite", { :controller => "favorites", :action => "create" })
+
+  put '/beer/:beer_id/favorite', to: 'beers#favorite', as: 'favorite'
           
   # READ
   get("/favorites", { :controller => "favorites", :action => "index" })
