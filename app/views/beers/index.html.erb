@@ -73,6 +73,7 @@
     </h2>
 
     <form action="/insert_beer" method="post">
+      
       <div>
         <label for="name_box">
           Name
@@ -82,12 +83,15 @@
       </div>
 
       <div>
-        <label for="brewery_id_box">
-          Brewery
-        </label>
+        <label for="brewery_id_box">Brewery</label>
 
-        <input type="text" id="brewery_id_box" name="query_brewery_id">
+        <select id = "brewery_id_box" name = "query_brewery_id">
+          <% Brewery.all.each do |br| %>
+            <option value = "<%=br.id%>"><%=br.name%></option>
+          <% end %>
+        </select>
       </div>
+
 
       <div>
         <label for="abv_box">

@@ -64,19 +64,6 @@
         <%= @the_beer.style_id %>
       </dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_beer.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_beer.updated_at) %> ago
-      </dd>
     </dl>
   </div>
 </div>
@@ -159,3 +146,28 @@
     <button class="icon-btn"><i class="far fa-bookmark" style="font-size: 2em"></i></button>
   </form>
 <% end %>
+
+
+<hr>
+
+
+<table border = "1">
+  <tr>
+    <th>User photo</th>
+    <th>Name</th>
+    <th>Rating</th>
+    <th>Comments</th>
+    <th>Posted</th>
+  </tr>
+  
+  <% @the_beer.ratings.order({:updated_at => :desc}).each do |r| %>
+    <tr>
+      <td><img src = <%=r.user.photo %> class = "profile-pic"></td>
+      <td><%=r.user.name%></td>
+      <td><%=r.rating%></td>
+      <td><%=r.rating_comments%></td>
+      <td><%=time_ago_in_words(r.updated_at)%></td>
+    </tr>
+
+  <% end %>
+</table>

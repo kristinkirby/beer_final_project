@@ -18,6 +18,7 @@ class RatingsController < ApplicationController
   end
 
   def create
+    session[:return_to] ||= request.referer
     the_rating = Rating.new
     the_rating.user_id = @current_user.id
     the_rating.beer_id = params.fetch("query_beer_id")
@@ -26,13 +27,15 @@ class RatingsController < ApplicationController
 
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings", { :notice => "Rating created successfully." })
+      #redirect_to("/ratings", { :notice => "Rating created successfully." })
+      redirect_to(session.delete(:return_to))
     else
       redirect_to("/ratings", { :notice => "Rating failed to create successfully." })
     end
   end
 
   def update
+    session[:return_to] ||= request.referer
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
@@ -43,18 +46,21 @@ class RatingsController < ApplicationController
 
     if the_rating.valid?
       the_rating.save
-      redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )
+      #redirect_to("/ratings/#{the_rating.id}", { :notice => "Rating updated successfully."} )
+      redirect_to(session.delete(:return_to))
     else
       redirect_to("/ratings/#{the_rating.id}", { :alert => "Rating failed to update successfully." })
     end
   end
 
   def destroy
+    session[:return_to] ||= request.referer
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
     the_rating.destroy
 
-    redirect_to("/ratings", { :notice => "Rating deleted successfully."} )
+    #redirect_to("/ratings", { :notice => "Rating deleted successfully."} )
+    redirect_to(session.delete(:return_to))
   end
 end
