@@ -21,6 +21,44 @@
    border: thin red solid;
  }*/
  
+ a.icon { 
+  text-decoration: none; 
+  color: black;   
+ }
+ a.icon:hover { 
+   color: orange; 
+ }
+ a.text { 
+   text-decoration: none; 
+   color: black; 
+ }
+ 
+ .fa{
+   cursor: pointer;
+  user-select: none;
+ }
+.icon-btn{
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+  color: black; 
+  padding:0;
+  text-decoration:underline;
+  font-family:inherit;
+  font-size:inherit;
+  
+}
+.icon-btn:hover { 
+  color: pink;
+}
+
+
+
+
+
+
+
  .table_img {
    height: 200px; 
    width: 200px; 
@@ -44,17 +82,35 @@
 }
 
 /* Banner settings */
-.banner-bg {
-  background-color: cadetblue; 
-  opacity: 0.5; 
-}
+  /* Text */ 
+  .banner-title {
+    font-family: 'Raleway', sans-serif;
+    font-size: 40px; 
+    font: bold; 
+  }
+  .banner-subtitle {
+    font-family: 'Raleway', sans-serif;
+    font-size: 32px; 
+    font: italic;
+  }
+  .banner-text { 
+    font-size: 16px; 
+  }
+
+  /* shapes */
+  .banner-bg {
+    background-color: cadetblue; 
+    opacity: 0.5; 
+    
+  }
+  
 .banner-img { 
   
   max-height: 500px; 
   object-fit: contain; 
   align-items: center; 
   justify-content: center;
-  
+    
 }
 .banner-info { 
   background-color: hsla(0,0%,100%,0.8);
@@ -70,3 +126,6 @@
   margin: 10px;
 
 }
+
+
+/* Ratings Cards */ 

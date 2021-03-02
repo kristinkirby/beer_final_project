@@ -14,6 +14,11 @@ class BeersController < ApplicationController
 
     @the_beer = matching_beers.at(0)
 
+    # check to see if user has already rated the beer
+    @curr_rating = Rating.exists?(@current_user.id, @the_beer.id)
+    @flag = Flag.exists?(@current_user.id, @the_beer.id)
+    @favorite = Favorite.exists?(@current_user.id, @the_beer.id)
+    
     render({ :template => "beers/show.html.erb" })
   end
 

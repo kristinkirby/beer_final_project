@@ -19,7 +19,7 @@ class FlagsController < ApplicationController
 
   def create
     the_flag = Flag.new
-    the_flag.user_id = params.fetch("query_user_id")
+    the_flag.user_id = @current_user.id 
     the_flag.beer_id = params.fetch("query_beer_id")
 
     if the_flag.valid?

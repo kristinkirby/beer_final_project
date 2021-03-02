@@ -19,7 +19,7 @@ class RatingsController < ApplicationController
 
   def create
     the_rating = Rating.new
-    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.user_id = @current_user.id
     the_rating.beer_id = params.fetch("query_beer_id")
     the_rating.rating = params.fetch("query_rating")
     the_rating.rating_comments = params.fetch("query_rating_comments")
@@ -36,7 +36,7 @@ class RatingsController < ApplicationController
     the_id = params.fetch("path_id")
     the_rating = Rating.where({ :id => the_id }).at(0)
 
-    the_rating.user_id = params.fetch("query_user_id")
+    the_rating.user_id = @current_user.id
     the_rating.beer_id = params.fetch("query_beer_id")
     the_rating.rating = params.fetch("query_rating")
     the_rating.rating_comments = params.fetch("query_rating_comments")

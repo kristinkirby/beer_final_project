@@ -19,7 +19,7 @@ class FavoritesController < ApplicationController
 
   def create
     the_favorite = Favorite.new
-    the_favorite.user_id = params.fetch("query_user_id")
+    the_favorite.user_id = @current_user.id 
     the_favorite.beer_id = params.fetch("query_beer_id")
 
     if the_favorite.valid?

@@ -11,14 +11,15 @@
   
       <!-- info -->
       <div class = "col-md-6 banner-info">
-        <h2><%=@user.name%></h2>
+        <div class="banner-title"><%=@user.name%></div>
+        <div class="banner-subtitle"><%=@user.display_name%></div>
         <br>
-        <h3><%=@user.display_name%></h3>
-        <br>
-        <i class="fas fa-beer"></i> <%=@user.ratings.count%> Beers | 
-        <i class="fas fa-heart"></i> <%=@user.favorites.count%> Favorites |              
-        <i class="fas fa-bookmark"></i> <%=@user.flags.count%> Must-Try Beers |  
-        <i class="fas fa-star"></i> <%=@user.avg_rating%> Avg. Rating
+        <div class="banner-text">
+          <i class="fas fa-beer"></i> <%=@user.ratings.count%> Beers | 
+          <i class="fas fa-heart"></i> <%=@user.favorites.count%> Favorites |              
+          <i class="fas fa-bookmark"></i> <%=@user.flags.count%> Must-Try Beers |  
+          <i class="fas fa-star"></i> <%=@user.avg_rating%> Avg. Rating
+        </div>
       </div>
 
       <!-- edit link --> 
@@ -51,7 +52,7 @@
                 <div class ="row">
                   <div class = "col-md-4 align-self-center">
                     <a href="/beers/<%=b.id%>"><h3><%= b.name %></h3></a>
-                    <br>
+                    
                     <a href="/breweries/<%=b.brewery.id%>"><h6><%= b.brewery.name%></h6></a>
                   </div>
                   <div class = "col-md-3 align-self-center">

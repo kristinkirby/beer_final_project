@@ -1,7 +1,8 @@
 <div>
   <div>
     <h1>
-      Beer #<%= @the_beer.id %> details
+      <%= @the_beer.name %>
+      
     </h1>
 
     <div>
@@ -11,11 +12,6 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_beer/<%= @the_beer.id %>">
-          Delete beer
-        </a>
-      </div>
     </div>
 
     <dl>
@@ -30,7 +26,7 @@
         Brewery
       </dt>
       <dd>
-        <%= @the_beer.brewery_id %>
+        <%= @the_beer.brewery.name %>
       </dd>
 
       <dt>
@@ -58,7 +54,7 @@
         Image
       </dt>
       <dd>
-        <%= @the_beer.image %>
+        <img src = <%= @the_beer.image %> class = "table_img">
       </dd>
 
       <dt>
@@ -88,74 +84,94 @@
 <hr>
 
 
-<div>
-  <div>
-    <h2>
-      Edit beer
-    </h2>
 
-    <form action="/modify_beer/<%= @the_beer.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_beer.name %>">
-      </div>
+<div> 
+  <% if !@curr_rating %> 
+    <h2>Rate beer</h2>
 
-      <div>
-        <label for="brewery_id_box">
-          Brewery
-        </label>
+    <form action = "/insert_rating" method="post">
+      <label for ="rating">Rating</label>
+      <input id="rating" name="query_rating">
 
-        <input type="text" id="brewery_id_box" name="query_brewery_id" value="<%= @the_beer.brewery_id %>">
-      </div>
+      <label for = "comment">Comments</label>
+      <input id = "comment" name = "query_rating_comments">
+      
+      <input id = "beer_id" type ="hidden"
+            value=<%=@the_beer.id%> name = "query_beer_id">
 
-      <div>
-        <label for="abv_box">
-          Abv
-        </label>
-
-        <input type="text" id="abv_box" name="query_abv" value="<%= @the_beer.abv %>">
-      </div>
-
-      <div>
-        <label for="ibu_box">
-          Ibu
-        </label>
-
-        <input type="text" id="ibu_box" name="query_ibu" value="<%= @the_beer.ibu %>">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <input type="text" id="description_box" name="query_description" value="<%= @the_beer.description %>">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image" value="<%= @the_beer.image %>">
-      </div>
-
-      <div>
-        <label for="style_id_box">
-          Style
-        </label>
-
-        <input type="text" id="style_id_box" name="query_style_id" value="<%= @the_beer.style_id %>">
-      </div>
-
-      <button>
-        Update beer
-      </button>
+      <button>Rate this beer</button>
     </form>
-  </div>
+  
+  <% else %>
+    <h2>Update rating</h2>
+    
+    <form action = "/modify_rating/<%=@curr_rating.id%>" method="post">
+      <label for ="rating">Rating</label>
+      <input id="rating" value = <%=@curr_rating.rating %> name="query_rating">
+
+      <label for = "comment">Comments</label>
+      <input id = "comment" type="text" value = "<%=@curr_rating.rating_comments%>" name = "query_rating_comments">
+      
+      <input id = "beer_id" type ="hidden"
+            value=<%=@the_beer.id%> name = "query_beer_id">
+
+      <button>Rate this beer</button>
+    </form>
+
+
+
+  <% end %>
+
+
+
 </div>
 
 <hr>
+
+<!--test toggling like buttons --> 
+<i onclick="myFunction(this)" class="fa fa-heart"></i>
+
+<script>
+function myFunction(x) {
+  x.classList.toggle("fa fa-bookmark");
+}
+</script>
+
+
+<br><br><br>
+
+
+
+
+
+<!-- Favorite vs. not -->
+<%if @favorite %>
+  Unlike 
+  <form action = "/delete_favorite/<%=@favorite.id%>">
+    <button class = "icon-btn"><i class="fas fa-heart" style="font-size: 2em"></i></button>
+  </form>
+<% else %>
+  Favorite this beer 
+   <form action = "/insert_favorite" method="post">
+     <input id = "beer_id" type ="hidden"
+            value=<%=@the_beer.id%> name = "query_beer_id">
+    <button class="icon-btn"><i class="far fa-heart" style="font-size: 2em"></i></button>
+  </form>
+<% end %>
+
+
+<!-- Flag vs. not -->
+<%if @flag %>
+  Unflag 
+  <form action = "/delete_flag/<%=@flag.id%>">
+    <button class = "icon-btn"><i class="fas fa-bookmark" style="font-size: 2em"></i></button>
+  </form>
+<% else %>
+  Flag this beer 
+   <form action = "/insert_flag" method="post">
+     <input id = "beer_id" type ="hidden"
+            value=<%=@the_beer.id%> name = "query_beer_id">
+    <button class="icon-btn"><i class="far fa-bookmark" style="font-size: 2em"></i></button>
+  </form>
+<% end %>
