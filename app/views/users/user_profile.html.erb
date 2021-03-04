@@ -37,7 +37,11 @@
 <div class = "container"> 
   <div class = "row">
     <div class = "col-md-9">
+      <% if @user.id == @current_user.id%>
       <div><h3>Your Ratings</h3></div>
+      <% else %>
+        <div><h3><%=@user.name%>'s Ratings</h3></div>
+      <% end %>
 
       <% @user.beers.each do |b| %>
         <div class = "container" style = "padding: 4px">
@@ -51,9 +55,9 @@
               <div class="col-md-9" >
                 <div class ="row">
                   <div class = "col-md-4 align-self-center">
-                    <a href="/beers/<%=b.id%>"><h3><%= b.name %></h3></a>
+                    <a class="text" href="/beers/<%=b.id%>"><h3><%= b.name %></h3></a>
                     
-                    <a href="/breweries/<%=b.brewery.id%>"><h6><%= b.brewery.name%></h6></a>
+                    <a class = "text" href="/breweries/<%=b.brewery.id%>"><h6><%= b.brewery.name%></h6></a>
                   </div>
                   <div class = "col-md-3 align-self-center">
                     ABV: <%=b.abv%>
@@ -62,24 +66,72 @@
                     <br>
                     Style: BLANK
                   </div>
-                  <div class = "col-md-3 align-self-center">
-                    Avg. Rating: <%=b.avg_rating(false) %>
-                    <br>
-                    Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
-                    <br>
-                    Update Rating
-                  </div>
-                  <div class = "col-md-1 align-self-center">
-                    <i class="far fa-heart" style="font-size: 2em"></i>
-                  </div>
-                  <div class = "col-md-1 align-self-center">
-                    <i class="far fa-bookmark" style="font-size: 2em"></i>
-                  </div>
+                  
+                  <!-- if looking at your own profile, you want to be able to update and like -->
+                  <% if @current_user.id == @user.id %>
+                    <div class = "col-md-3 align-self-center">
+                      Avg. Rating: <%=b.avg_rating(false) %>
+                      <br>
+                      Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
+                      <br>
+                      Update Rating
+                    </div>
+                
+                    <!-- Icons section (for your own profile) -->
+                    <%favorite = b.favorite?(@user.id) %>
+                    
+                    <%flag = b.flag?(@user.id) %>
+                    <!--favorites-->
+                    <div class = "col-md-1 align-self-center">
+                      <% if favorite %>
+                          <form action = "/delete_favorite/<%=favorite.id%>">
+                            <button class = "icon-btn"><i class="fas fa-heart"></i></button>
+                          </form>
+                      <% else %>
+                        <form action = "/insert_favorite" method="post">
+                          <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
+                          <button class = "icon-btn"><i class="far fa-heart"></i></button>                          
+                        </form>
+                      <% end %>
+                    </div>
+
+                    <!--flags-->
+                    <div class = "col-md-1 align-self-center">
+                      <% if flag %>
+                          <form action = "/delete_flag/<%=flag.id%>">
+                            <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
+                          </form>
+                      <% else %>
+                        <form action = "/insert_flag" method="post">
+                          <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
+                          <button class = "icon-btn"><i class="far fa-bookmark"></i></button>
+                        </form>
+                      <% end %>
+                    </div>
+                    <!--- end of icons section (for own profile) -->
+                  <!-- if you're looking at someone else's ratings, you want to see their ratings and have option to update your own-->
+                  <% else %>
+                    <div class = "col-md-3 align-self-center">
+                      <%= @user.name %>'s Rating: <%=b.avg_rating(@user.id) %>
+                      <br>
+                      Your Rating: <%=b.avg_rating(@current_user.id) %>
+                      <br>
+                      Avg. Rating: <%=b.avg_rating(false) %>
+                    </div>
+                    <div class = "col-md-2 align-self-center">
+                      Update Rating
+                      <br>
+                      <i class="fas fa-star"></i> 
+
+                    </div>
+                  <% end %>
+
+                 
                 </div>
                 <hr>
                 <div class = "row">
                   <div class = "col">
-                    <%=b.ratings.where({:user_id => session.fetch(:user_id)}).first.rating_comments%>
+                    <%= b.ratings.where({:user_id => @user.id}).first.rating_comments%>
                   </div>
                 </div>
                 
@@ -96,10 +148,22 @@
     <div class = "col-md-3">
       <div class = "row">
         <div class ="card"><h3>Favorites</h3></div>
+        <% @user.favorites.each do |f| %>
+          <div>
+          <img src = <%=f.beer.image%> class="table_img"
+            alt = "<%=f.beer.brewery.name%>: <%=f.beer.name%>">
+          </div>
+          
+
+          
+        <% end %>
       </div>
 
       <div class = "row">
         <div class="card"><h3>Must-Try Beers</h3></div>
+        <% @user.flags.each do |f| %>
+          <%= f.beer.name %><br>
+        <% end %>
       </div>
     </div>
   

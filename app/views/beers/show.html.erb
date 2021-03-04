@@ -120,14 +120,14 @@
 <%if @favorite %>
   Unlike 
   <form action = "/delete_favorite/<%=@favorite.id%>">
-    <button class = "icon-btn"><i class="fas fa-heart" style="font-size: 2em"></i></button>
+    <button class = "icon-btn"><i class="fas fa-heart"></i></button>
   </form>
 <% else %>
   Favorite this beer 
    <form action = "/insert_favorite" method="post">
      <input id = "beer_id" type ="hidden"
             value=<%=@the_beer.id%> name = "query_beer_id">
-    <button class="icon-btn"><i class="far fa-heart" style="font-size: 2em"></i></button>
+    <button class="icon-btn"><i class="far fa-heart"</i></button>
   </form>
 <% end %>
 
@@ -136,14 +136,14 @@
 <%if @flag %>
   Unflag 
   <form action = "/delete_flag/<%=@flag.id%>">
-    <button class = "icon-btn"><i class="fas fa-bookmark" style="font-size: 2em"></i></button>
+    <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
   </form>
 <% else %>
   Flag this beer 
    <form action = "/insert_flag" method="post">
      <input id = "beer_id" type ="hidden"
             value=<%=@the_beer.id%> name = "query_beer_id">
-    <button class="icon-btn"><i class="far fa-bookmark" style="font-size: 2em"></i></button>
+    <button class="icon-btn"><i class="far fa-bookmark"></i></button>
   </form>
 <% end %>
 

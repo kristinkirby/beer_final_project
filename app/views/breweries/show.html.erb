@@ -1,4 +1,3 @@
-
 <!-- Top Banner -->
 <div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
       
@@ -76,11 +75,36 @@
                     <br>
                     Update Rating
                   </div>
+
+                  <!-- Icons section -->
+                  <%favorite = b.favorite?(@current_user.id) %>
+                  <%flag = b.flag?(@current_user.id) %>
+                  <!--favorites-->
                   <div class = "col-md-1 align-self-center">
-                    <i class="far fa-heart" style="font-size: 2em"></i>
+                    <% if favorite %>
+                        <form action = "/delete_favorite/<%=favorite.id%>">
+                          <button class = "icon-btn"><i class="fas fa-heart"></i></button>
+                        </form>
+                    <% else %>
+                      <form action = "/insert_favorite" method="post">
+                        <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
+                        <button class = "icon-btn"><i class="far fa-heart"></i></button>
+                      </form>
+                    <% end %>
                   </div>
+
+                  <!--flags-->
                   <div class = "col-md-1 align-self-center">
-                    <i class="far fa-bookmark" style="font-size: 2em"></i>
+                    <% if flag %>
+                        <form action = "/delete_flag/<%=flag.id%>">
+                          <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
+                        </form>
+                    <% else %>
+                      <form action = "/insert_flag" method="post">
+                        <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
+                        <button class = "icon-btn"><i class="far fa-bookmark"></i></button>
+                      </form>
+                    <% end %>
                   </div>
                 </div>
                 <hr>

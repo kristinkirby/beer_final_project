@@ -21,22 +21,29 @@
    border: thin red solid;
  }*/
  
- a.icon { 
+ /* a.icon { 
   text-decoration: none; 
   color: black;   
  }
  a.icon:hover { 
    color: orange; 
- }
+ } */
+
+
  a.text { 
    text-decoration: none; 
    color: black; 
  }
- 
- .fa{
-   cursor: pointer;
-  user-select: none;
+ a.text:hover { 
+  text-decoration: underline; 
+  color: green;
+
  }
+ 
+ /* .fa{
+  cursor: pointer;
+  user-select: none;
+ } */
 .icon-btn{
   border:none;
   outline:none;
@@ -46,12 +53,22 @@
   padding:0;
   text-decoration:underline;
   font-family:inherit;
-  font-size:inherit;
+  font-size: 2em;
   
 }
 .icon-btn:hover { 
   color: pink;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -129,3 +146,11 @@
 
 
 /* Ratings Cards */ 
+.rating-card {
+  padding: 4px; 
+}
+.description-box {
+  height: 50px; 
+  display:block;
+  overflow: hidden; 
+}

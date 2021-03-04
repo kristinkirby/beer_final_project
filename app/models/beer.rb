@@ -36,8 +36,16 @@ class Beer < ApplicationRecord
       avg = "N/A"
       return avg
     end
-
   end 
 
+
+  def favorite?(user_id)
+    beer_id = self.id 
+    return Favorite.exists?(user_id, beer_id)
+  end 
+  def flag?(user_id)
+    beer_id = self.id 
+    return Flag.exists?(user_id, beer_id)
+  end 
 
 end
