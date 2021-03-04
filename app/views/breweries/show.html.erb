@@ -32,7 +32,7 @@
 </div>
 
 <!-- Description container -->
-<div class = "container banner-info"> 
+<div class = "container banner-info description-box"> 
   <%= @the_brewery.description %>
 </div> 
 
@@ -46,7 +46,7 @@
 
       <% @the_brewery.beers.each do |b| %>
 
-        <div class = "container" style = "padding: 4px">
+        <div class = "container rating-card">
           <div class="card">
             <div class="row">
 
@@ -57,7 +57,7 @@
               <div class="col-md-9" >
                 <div class ="row">
                   <div class = "col-md-4 align-self-center">
-                    <a href="/beers/<%=b.id%>"><%= b.name %></a>
+                    <a href="/beers/<%=b.id%>" class="card-text level-one"><%= b.name %></a>
                     <br>
                     <%= b.style_id%>
                   </div>
@@ -109,7 +109,7 @@
                 </div>
                 <hr>
                 <div class = "row">
-                  <div class = "col">
+                  <div class = "col description-box">
                     <%=b.description%>
                   </div>
                 </div>
@@ -147,7 +147,7 @@
     <div class = "col-md-3">
       <!-- map box-->
       <div class = "row">
-        <h5>Map</h5>
+        <h4>Map</h4>
             
           <div>
             <div id="map" style='width: 400px; height: 400px;'></div>
@@ -208,7 +208,7 @@
 
       <!-- other info box-->
       <div class ="row">
-        <h5>Some other info box</h5>
+        <h4>Some other info box</h4>
       </div> <!-- end of other info box -->
         
     </div> <!--end of side stuff-->

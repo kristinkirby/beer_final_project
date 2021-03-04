@@ -21,15 +21,6 @@
    border: thin red solid;
  }*/
  
- /* a.icon { 
-  text-decoration: none; 
-  color: black;   
- }
- a.icon:hover { 
-   color: orange; 
- } */
-
-
  a.text { 
    text-decoration: none; 
    color: black; 
@@ -40,10 +31,6 @@
 
  }
  
- /* .fa{
-  cursor: pointer;
-  user-select: none;
- } */
 .icon-btn{
   border:none;
   outline:none;
@@ -54,28 +41,35 @@
   text-decoration:underline;
   font-family:inherit;
   font-size: 2em;
-  
 }
 .icon-btn:hover { 
   color: pink;
 }
+.icon-btn-lg {
+  border:none;
+  outline:none;
+  background:none;
+  cursor:pointer;
+  color: black; 
+  padding:0;
+  text-decoration:underline;
+  font-family:inherit;
+  font-size: 4em;
+  
+}
 
 
+/* Can play around with FA stuff */
+ /* .fa{
+  cursor: pointer;
+  user-select: none;
+ } */
+/* .fas.fa-bookmark:hover {
+  color:green;
+} */
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+/* Picture formats */
  .table_img {
    height: 200px; 
    width: 200px; 
@@ -87,15 +81,22 @@
   padding: none; 
  }
 
-
-
-
 .profile-pic {
-    width: 250px;
-    height: 250px;
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+}
+.banner-pic {
+  width: 250px;
+  height: 250px;
+}
+.feed-pic {
+  width: 125px;
+  height: 125px;
+}
+.xs-pic { 
+  width: 75px;
+  height: 75px;
 }
 
 /* Banner settings */
@@ -110,6 +111,11 @@
     font-size: 32px; 
     font: italic;
   }
+  .banner-subtitle2 {
+    font-family: 'Raleway', sans-serif;
+    font-size: 24px; 
+    font: italic;
+  }
   .banner-text { 
     font-size: 16px; 
   }
@@ -122,7 +128,6 @@
   }
   
 .banner-img { 
-  
   max-height: 500px; 
   object-fit: contain; 
   align-items: center; 
@@ -134,6 +139,7 @@
   border:thin black solid; 
   padding: 10px;   
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .info-box {
@@ -150,7 +156,69 @@
   padding: 4px; 
 }
 .description-box {
-  height: 50px; 
+  height: 96px; 
   display:block;
   overflow: hidden; 
 }
+a.card-text { 
+  color: black; 
+  text-decoration: none; 
+}
+a.card-text:hover{
+  color: green;
+  text-decoration: underline;
+}
+.level-one { 
+  font-size: 1.5em; 
+}
+
+
+
+#myinput {
+  background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
+  border: solid 1px #82CFD0;
+  border-radius: 8px;
+  height: 7px;
+  width: 356px;
+  outline: none;
+  transition: background 450ms ease-in;
+  -webkit-appearance: none;
+}
+
+
+
+/* STARS */
+.stars-container {
+  position: relative;
+  display: inline-block;
+  color: transparent;
+}
+
+.stars-container:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: lightgray;
+}
+
+.stars-container:after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: '★★★★★';
+  color: black;
+  overflow: hidden;
+}
+
+.stars-0:after { width: 0%; }
+.stars-10:after { width: 10%; }
+.stars-20:after { width: 20%; }
+.stars-30:after { width: 30%; }
+.stars-40:after { width: 40%; }
+.stars-50:after { width: 50%; }
+.stars-60:after { width: 60%; }
+.stars-70:after { width: 70%; }
+.stars-80:after { width: 80%; }
+.stars-90:after { width: 90%; }
+.stars-100:after { width: 100; }

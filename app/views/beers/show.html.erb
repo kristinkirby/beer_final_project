@@ -1,173 +1,185 @@
-<div>
-  <div>
-    <h1>
-      <%= @the_beer.name %>
-      
-    </h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/beers">Beers</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@the_beer.name%></li>
+  </ol>
+</nav>
 
-    <div>
-      <div>
-        <a href="/beers">
-          Go back
-        </a>
+
+<!--Banner with user info-->
+<div class = "container-fluid" style="background-color: LightPink">
+  <div class = "container" style="padding: 10px">
+    <div class = "row align-items-center">
+      
+      <!-- pic -->
+      <div class = "col-md-4">
+        <img class = "profile-pic banner-pic"
+            src = <%= @the_beer.image%>>
+      </div>
+  
+      <!-- info -->
+      <div class = "col-md-6 banner-info">
+        <div class="banner-title"><%=@the_beer.name%></div>
+        <div class="banner-subtitle"><%=@the_beer.brewery.name%></div>
+        <div class="banner-subtitle2">Style name goes here</div>
+        <br>
+        <div class="banner-text">
+          <i class="fas fa-beer"></i> ## Beers | 
+          <i class="fas fa-heart"></i> ## Favorites |              
+          <i class="fas fa-bookmark"></i> ## Must-Try Beers |  
+          <i class="fas fa-star"></i> ## Avg. Rating
+        </div>
       </div>
 
+        <div class="col-md-2" style="justify-content:center"> 
+          <%favorite = @the_beer.favorite?(@current_user.id) %>
+          <%flag = @the_beer.flag?(@current_user.id) %>
+          <!--favorites-->
+          <% if favorite %>
+            <form action = "/delete_favorite/<%=favorite.id%>">
+              <button class = "icon-btn-lg"><i class="fas fa-heart"></i></button>
+            </form>
+          <% else %>
+            <form action = "/insert_favorite" method="post">
+              <input id = "beer_id" type ="hidden" value=<%=@the_beer.id%> name = "query_beer_id">
+              <button class = "icon-btn-lg"><i class="far fa-heart"></i></button>                          
+            </form>
+          <% end %>
+
+          <!--flagged -->
+          <% if flag %>
+            <form action = "/delete_flag/<%=flag.id%>">
+              <button class = "icon-btn-lg"><i class="fas fa-bookmark"></i></button>
+            </form>
+          <% else %>
+            <form action = "/insert_flag" method="post">
+              <input id = "beer_id" type ="hidden" value=<%=@the_beer.id%> name = "query_beer_id">
+              <button class = "icon-btn-lg"><i class="far fa-bookmark"></i></button>                          
+            </form>
+          <% end %>
+
+        </div>
+      </div>
     </div>
-
-    <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_beer.name %>
-      </dd>
-
-      <dt>
-        Brewery
-      </dt>
-      <dd>
-        <%= @the_beer.brewery.name %>
-      </dd>
-
-      <dt>
-        Abv
-      </dt>
-      <dd>
-        <%= @the_beer.abv %>
-      </dd>
-
-      <dt>
-        Ibu
-      </dt>
-      <dd>
-        <%= @the_beer.ibu %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_beer.description %>
-      </dd>
-
-      <dt>
-        Image
-      </dt>
-      <dd>
-        <img src = <%= @the_beer.image %> class = "table_img">
-      </dd>
-
-      <dt>
-        Style
-      </dt>
-      <dd>
-        <%= @the_beer.style_id %>
-      </dd>
-
-    </dl>
   </div>
 </div>
 
-<hr>
+<!-- Description container -->
+<div class = "container banner-info description-box"> 
+  <%=@the_beer.description %>
+</div> 
 
+<!-- Ratings and other info-->
+<div class="container">
+  <div class = "row">
 
-
-
-<div> 
-  <% if !@curr_rating %> 
-    <h2>Rate beer</h2>
-
-    <form action = "/insert_rating" method="post">
-      <label for ="rating">Rating</label>
-      <input id="rating" name="query_rating">
-
-      <label for = "comment">Comments</label>
-      <input id = "comment" name = "query_rating_comments">
+     <!--ratings and reviews! --> 
+    <div class = "col-md-9">
+      <h4><%=@the_beer.name%> Ratings</h4>
       
-      <input id = "beer_id" type ="hidden"
-            value=<%=@the_beer.id%> name = "query_beer_id">
-
-      <button>Rate this beer</button>
-    </form>
-  
-  <% else %>
-    <h2>Update rating</h2>
-    
-    <form action = "/modify_rating/<%=@curr_rating.id%>" method="post">
-      <label for ="rating">Rating</label>
-      <input id="rating" value = <%=@curr_rating.rating %> name="query_rating">
-
-      <label for = "comment">Comments</label>
-      <input id = "comment" type="text" value = "<%=@curr_rating.rating_comments%>" name = "query_rating_comments">
-      
-      <input id = "beer_id" type ="hidden"
-            value=<%=@the_beer.id%> name = "query_beer_id">
-
-      <button>Rate this beer</button>
-    </form>
-
-
-
-  <% end %>
-
+      <div class="container">
+        <% @the_beer.ratings.order({:updated_at => :desc}).each do |r| %>
+          <div class="card">
+            <div class="row">
+              <div class = "col-md-3 align-self-center">
+                <a href="/users/<%=r.user.id%>">
+                  <img src = <%=r.user.photo %> class = "profile-pic feed-pic">
+                </a>
+              </div>
+              
+              <div class="col-md-9">
+                <h5>
+                    <a href="/users/<%=r.user_id%>" class="text"><%=r.user.display_name%></a><br>
+                    <%= r.rating %>
+                  </h5>
+                
+                <p><%=r.rating_comments%></p>
+                <p>Posted <%=time_ago_in_words(r.updated_at)%> ago<p>
+              </div>
+            </div>
+          
+          </div>
+        <% end %>
+      </div>
 
 
+
+    </div>
+
+    <!-- others who like this -->
+    <div class = "col-md-3">
+      <div class="row">
+          <% if !@curr_rating %> 
+            <h4>Rate beer</h4>
+
+            <form action = "/insert_rating" method="post">
+              <label for ="rating">Rating</label>
+              <!--<input id="rating" name="query_rating">-->
+              <input id="rating" name = query_rating
+                     type="range" class="form-range" min="0" max = "5" step = "0.25">
+
+              <label for = "comment">Comments</label>
+              <input id = "comment" name = "query_rating_comments">
+              
+              <input id = "beer_id" type ="hidden"
+                    value=<%=@the_beer.id%> name = "query_beer_id">
+
+              <button>Rate this beer</button>
+            </form>
+          
+          <% else %>
+            <h4>Update rating</h4>
+            
+            <form action = "/modify_rating/<%=@curr_rating.id%>" method="post">
+              <label for ="rating">Rating</label>
+              <!--<input id="rating" value = <%=@curr_rating.rating %> name="query_rating">-->
+              <input id="rating" name = query_rating value = <%=@curr_rating.rating %>
+                     type="range" class="form-range" min="0" max = "5" step = "0.25">
+                     
+
+              <label for = "comment">Comments</label>
+              <input id = "comment" type="text" value = "<%=@curr_rating.rating_comments%>" name = "query_rating_comments">
+              
+              <input id = "beer_id" type ="hidden"
+                    value=<%=@the_beer.id%> name = "query_beer_id">
+
+              <button>Rate this beer</button>
+            </form>
+          <% end %>
+        
+      </div>
+
+      <div class="row">
+        <h4>Favorited by</h4>
+
+        <% @the_beer.favorites.each do |f| %>
+          <a href="/users/<%=f.user_id%>" class="text">
+            <img class="profile-pic xs-pic" src="<%=f.user.photo%>">
+            <%= f.user.display_name %>
+          </a>
+          
+        <%end%>
+
+      </div>
+    </div>
+  </div>
 </div>
 
-<hr>
-
-<!-- Favorite vs. not -->
-<%if @favorite %>
-  Unlike 
-  <form action = "/delete_favorite/<%=@favorite.id%>">
-    <button class = "icon-btn"><i class="fas fa-heart"></i></button>
-  </form>
-<% else %>
-  Favorite this beer 
-   <form action = "/insert_favorite" method="post">
-     <input id = "beer_id" type ="hidden"
-            value=<%=@the_beer.id%> name = "query_beer_id">
-    <button class="icon-btn"><i class="far fa-heart"</i></button>
-  </form>
-<% end %>
 
 
-<!-- Flag vs. not -->
-<%if @flag %>
-  Unflag 
-  <form action = "/delete_flag/<%=@flag.id%>">
-    <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
-  </form>
-<% else %>
-  Flag this beer 
-   <form action = "/insert_flag" method="post">
-     <input id = "beer_id" type ="hidden"
-            value=<%=@the_beer.id%> name = "query_beer_id">
-    <button class="icon-btn"><i class="far fa-bookmark"></i></button>
-  </form>
-<% end %>
 
 
-<hr>
 
+<!-- this is how you get the stars to show!!! ---> 
+<!--<p><span class="stars-container stars-70">★★★★★</span></p>-->
 
-<table border = "1">
-  <tr>
-    <th>User photo</th>
-    <th>Name</th>
-    <th>Rating</th>
-    <th>Comments</th>
-    <th>Posted</th>
-  </tr>
-  
-  <% @the_beer.ratings.order({:updated_at => :desc}).each do |r| %>
-    <tr>
-      <td><img src = <%=r.user.photo %> class = "profile-pic"></td>
-      <td><%=r.user.name%></td>
-      <td><%=r.rating%></td>
-      <td><%=r.rating_comments%></td>
-      <td><%=time_ago_in_words(r.updated_at)%></td>
-    </tr>
+<div class="chrome">
+  <input id="myinput" min="0" max="60" type="range" value="30"/>
+</div>
 
-  <% end %>
-</table>
+<script>
+document.getElementById("myinput").oninput = function() {
+  var value = (this.value-this.min)/(this.max-this.min)*100
+  this.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
+};
