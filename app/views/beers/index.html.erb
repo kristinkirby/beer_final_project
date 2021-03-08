@@ -36,40 +36,23 @@
           <div class = "col-md-3 align-self-center">
             Avg. Rating: <%=b.avg_rating(false) %>
             <br>
-            Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
+            Your Rating: <%=b.avg_rating(@current_user.id) %>
             <br>
             Update Rating
           </div>
 
           <!-- Icons section -->
-          <%favorite = b.favorite?(@current_user.id) %>
-          <%flag = b.flag?(@current_user.id) %>
+          <%@favorite = b.favorite?(@current_user.id) %>
+          <%@flag = b.flag?(@current_user.id) %>
+          <%@beer_id = b.id %>
           <!--favorites-->
           <div class = "col-md-1 align-self-center">
-            <% if favorite %>
-                <form action = "/delete_favorite/<%=favorite.id%>">
-                  <button class = "icon-btn"><i class="fas fa-heart"></i></button>
-                </form>
-            <% else %>
-              <form action = "/insert_favorite" method="post">
-                <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                <button class = "icon-btn"><i class="far fa-heart"></i></button>
-              </form>
-            <% end %>
+            <%= render "shared/favorite_button.html.erb" %>
           </div>
 
           <!--flags-->
           <div class = "col-md-1 align-self-center">
-            <% if flag %>
-                <form action = "/delete_flag/<%=flag.id%>">
-                  <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
-                </form>
-            <% else %>
-              <form action = "/insert_flag" method="post">
-                <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                <button class = "icon-btn"><i class="far fa-bookmark"></i></button>
-              </form>
-            <% end %>
+            <%=render "shared/flag_button.html.erb"%>
           </div>
 
           <!-- End of icons section -->

@@ -31,6 +31,7 @@ class Beer < ApplicationRecord
 
     if values.present?
       avg = values.sum / values.count
+      avg = avg.round(3)
       return avg
     else
       avg = "N/A"

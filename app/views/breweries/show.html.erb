@@ -14,7 +14,7 @@
         
         <!--pic -->
         <div class = "col-md-4">
-          <img class = "profile-pic img-thumbnail" style
+          <img class = "profile-pic banner-pic" style="border: thick white solid"
               src = <%= @the_brewery.logo_image%>>
         </div>
 
@@ -33,7 +33,8 @@
                 </a>
         <br><br>
         <i class="fas fa-beer"></i> <%=@the_brewery.beers.count%> Beers |              
-        <i class="fas fa-star"></i> <%=@the_brewery.ratings%> Average Rating     
+        <i class="fas fa-star"></i> <%=@the_brewery.avg_rating(false)%> Average Rating | 
+        <%=@the_brewery.ratings.count %>  
       </div>
     </div>
   </div>
@@ -85,34 +86,17 @@
                   </div>
 
                   <!-- Icons section -->
-                  <%favorite = b.favorite?(@current_user.id) %>
-                  <%flag = b.flag?(@current_user.id) %>
+                  <%@favorite = b.favorite?(@current_user.id) %>
+                  <%@flag = b.flag?(@current_user.id) %>
+                  <% @beer_id = b.id %>
                   <!--favorites-->
                   <div class = "col-md-1 align-self-center">
-                    <% if favorite %>
-                        <form action = "/delete_favorite/<%=favorite.id%>">
-                          <button class = "icon-btn"><i class="fas fa-heart"></i></button>
-                        </form>
-                    <% else %>
-                      <form action = "/insert_favorite" method="post">
-                        <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                        <button class = "icon-btn"><i class="far fa-heart"></i></button>
-                      </form>
-                    <% end %>
+                    <%= render "shared/favorite_button"%>
                   </div>
 
                   <!--flags-->
                   <div class = "col-md-1 align-self-center">
-                    <% if flag %>
-                        <form action = "/delete_flag/<%=flag.id%>">
-                          <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
-                        </form>
-                    <% else %>
-                      <form action = "/insert_flag" method="post">
-                        <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                        <button class = "icon-btn"><i class="far fa-bookmark"></i></button>
-                      </form>
-                    <% end %>
+                    <%=render "shared/flag_button.html.erb"%>
                   </div>
                 </div>
                 <hr>
@@ -158,7 +142,7 @@
         <h4>Map</h4>
             
           <div>
-            <div id="map" style='width: 400px; height: 400px;'></div>
+            <div id="map" style='width: 350px; height: 350px;'></div>
           </div>
 
           <script>
@@ -198,25 +182,31 @@
 
 
       </div> <!-- end of map box-->
+      <br><br>
+      <!-- Show four most recent ratings-->
+      <div class ="row" >
+        <h4>Recent Reviews</h4>
+
+        <% @the_brewery.ratings.order({:updated_at => :desc}).each_with_index do |r, index| %>
+          <% break if index > 3 %>
+          <div class = "container">  
+            <div class="row">
+              <div class="col-md-4">
+                <a href= "/users/<%= r.user_id %>">
+                  <img src = "<%=r.user.photo%>" class = "profile-pic xs-pic">
+                </a>
+              </div>
+              <div class = "col-md-8">
+                <a href="/beers/<%=r.beer_id%>"><%= r.beer.name %></a>
+                <br>
+                <%= r.rating %>
+                <p style="font-style:italic"><%= r.rating_comments %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-      <!-- other info box-->
-      <div class ="row">
-        <h4>Some other info box</h4>
       </div> <!-- end of other info box -->
         
     </div> <!--end of side stuff-->
@@ -230,94 +220,6 @@
 
 
 
-<!--<div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
-    <div class = "container" style="padding: 10px">
-      <div class = "row align-items-center">
-        <div class = "col-md-4">
-          <img class = "profile-pic img-thumbnail" style
-              src = <%= @the_brewery.logo_image%>>
-        </div>
-      </div>
-  </div>
-</div>
--->
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-
-
-
-
-<!--Banner with user info-->
-<div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
-  
-  <div class = "container" style="padding: 10px; opacity: 1;">
-    <div class = "row align-items-center">
-      
-      <!-- pic -->
-      <div class = "col-md-4">
-        <img class = "profile-pic"
-            src = <%= @the_brewery.logo_image%>>
-      </div>
-  
-      <!-- info -->
-      <div class = "col-md-4">
-        <h2><%=@the_brewery.name%></h2>
-        <br>
-        <i class="fas fa-phone-volume"></i> : <%= @the_brewery.phone_number %>
-            <br>
-            <i class="fas fa-desktop"></i>: <a href=<%=@the_brewery.website%>><%=@the_brewery.website%></a>
-            <br>
-            <i class="fas fa-map-marked-alt"></i>: 
-                <a href="https://www.google.com/maps/dir/?api=1&destination=<%=CGI.escape(@the_brewery.location)%>"
-                target="_blank" rel="noopener noreferrer">
-                <%=@the_brewery.location%>
-                </a>
-        <br>
-        <i class="fas fa-beer"></i> <%=@the_brewery.beers_count%> Beers |              
-        <i class="fas fa-star"></i> ##.## Average Rating     
-      </div>
-
-      <!-- description --> 
-      <div class = "col-md-4">
-        <!--<%= @the_brewery.description %>-->
-      </div>
-    </div>
-  </div>
-</div>
-
-<br>
-
-<!-- Ratings and others -->
-<div class = "container"> 
-  <div class = "row">
-    <div class = "col-md-9">
-      <div class = "card">Your Ratings</div>
-    </div>
-
-    <div class = "col-md-3">
-      <div class = "row">
-        <div class ="card">Favorites</div>
-      </div>
-
-      <div class = "row">
-        <div class="card">Must-Try Beers</div>
-      </div>
-    </div>
-  
-  </div>
-</div>
-
-<br>
-<br>
-<br>
-<hr>
 
 
 
@@ -328,101 +230,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<div>
-  <div>
-    <h1>
-      Brewery #<%= @the_brewery.id %> details
-    </h1>
-
-    <div>
-      <div>
-        <a href="/breweries">
-          Go back
-        </a>
-      </div>
-
-      <div>
-        <a href="/delete_brewery/<%= @the_brewery.id %>">
-          Delete brewery
-        </a>
-      </div>
-    </div>
-
-    <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_brewery.name %>
-      </dd>
-
-      <dt>
-        Location
-      </dt>
-      <dd>
-        <%= @the_brewery.location %>
-      </dd>
-
-      <dt>
-        Phone number
-      </dt>
-      <dd>
-        <%= @the_brewery.phone_number %>
-      </dd>
-
-      <dt>
-        Website
-      </dt>
-      <dd>
-        <%= @the_brewery.website %>
-      </dd>
-
-      <dt>
-        Logo image
-      </dt>
-      <dd>
-        <%= @the_brewery.logo_image %>
-      </dd>
-
-      <dt>
-        Description
-      </dt>
-      <dd>
-        <%= @the_brewery.description %>
-      </dd>
-
-      <dt>
-        Beers count
-      </dt>
-      <dd>
-        <%= @the_brewery.beers_count %>
-      </dd>
-
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_brewery.created_at) %> ago
-      </dd>
-
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_brewery.updated_at) %> ago
-      </dd>
-    </dl>
-  </div>
-</div>
 
 <hr>
 

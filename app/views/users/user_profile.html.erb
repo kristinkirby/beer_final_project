@@ -5,7 +5,7 @@
       
       <!-- pic -->
       <div class = "col-md-4">
-        <img class = "profile-pic"
+        <img class = "profile-pic banner-pic"
             src = <%= @user.photo%>>
       </div>
   
@@ -25,7 +25,9 @@
       <!-- edit link --> 
       <!--NOTE MAYBE WE ONLY WANT THIS WHEN ITS YOUR PROFILE BUT YOU CAN STILL SEE OTHER PROFILES -->
       <div class = "col-md-2">
-        <button type = "button" class = "btn btn-outline-light">Edit profile <i class="fas fa-user-edit"></i></button>
+        <% if @current_user.id == @user.id %>
+          <button type = "button" class = "btn btn-outline-light">Edit profile <i class="fas fa-user-edit"></i></button>
+        <% end %>
       </div>
     </div>
   </div>

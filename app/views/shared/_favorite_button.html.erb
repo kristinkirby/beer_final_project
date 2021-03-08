@@ -1,0 +1,11 @@
+<!--favorites-->
+<% if @favorite %>
+ <form action = "/delete_favorite/<%=@favorite.id%>">
+  <button class = "icon-btn"><i class="fas fa-heart"></i></button>
+ </form>
+<% else %>
+  <form action = "/insert_favorite" method="post">
+  <input id = "beer_id" type ="hidden" value=<%=@beer_id%> name = "query_beer_id">
+    <button class = "icon-btn"><i class="far fa-heart"></i></button>                          
+  </form>
+<% end %>

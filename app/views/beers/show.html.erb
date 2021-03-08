@@ -25,42 +25,14 @@
         <div class="banner-subtitle2">Style name goes here</div>
         <br>
         <div class="banner-text">
-          <i class="fas fa-beer"></i> ## Beers | 
-          <i class="fas fa-heart"></i> ## Favorites |              
-          <i class="fas fa-bookmark"></i> ## Must-Try Beers |  
-          <i class="fas fa-star"></i> ## Avg. Rating
+          <i class="fas fa-beer"></i> <%=@the_beer.ratings.count %> Beers | 
+          <i class="fas fa-heart"></i> <%=@the_beer.favorites.count%> Favorites |              
+          <i class="fas fa-bookmark"></i> <%=@the_beer.flags.count%> Must-Try Beers |  
+          <i class="fas fa-star"></i><%=@the_beer.avg_rating(false)%>  Avg. Rating
         </div>
       </div>
 
-        <div class="col-md-2" style="justify-content:center"> 
-          <%favorite = @the_beer.favorite?(@current_user.id) %>
-          <%flag = @the_beer.flag?(@current_user.id) %>
-          <!--favorites-->
-          <% if favorite %>
-            <form action = "/delete_favorite/<%=favorite.id%>">
-              <button class = "icon-btn-lg"><i class="fas fa-heart"></i></button>
-            </form>
-          <% else %>
-            <form action = "/insert_favorite" method="post">
-              <input id = "beer_id" type ="hidden" value=<%=@the_beer.id%> name = "query_beer_id">
-              <button class = "icon-btn-lg"><i class="far fa-heart"></i></button>                          
-            </form>
-          <% end %>
-
-          <!--flagged -->
-          <% if flag %>
-            <form action = "/delete_flag/<%=flag.id%>">
-              <button class = "icon-btn-lg"><i class="fas fa-bookmark"></i></button>
-            </form>
-          <% else %>
-            <form action = "/insert_flag" method="post">
-              <input id = "beer_id" type ="hidden" value=<%=@the_beer.id%> name = "query_beer_id">
-              <button class = "icon-btn-lg"><i class="far fa-bookmark"></i></button>                          
-            </form>
-          <% end %>
-
-        </div>
-      </div>
+      
     </div>
   </div>
 </div>
@@ -118,7 +90,7 @@
               <!--<input id="rating" name="query_rating">-->
               <input id="rating" name = query_rating
                      type="range" class="form-range" min="0" max = "5" step = "0.25">
-
+              <br>
               <label for = "comment">Comments</label>
               <input id = "comment" name = "query_rating_comments">
               
@@ -137,7 +109,7 @@
               <input id="rating" name = query_rating value = <%=@curr_rating.rating %>
                      type="range" class="form-range" min="0" max = "5" step = "0.25">
                      
-
+              <br>
               <label for = "comment">Comments</label>
               <input id = "comment" type="text" value = "<%=@curr_rating.rating_comments%>" name = "query_rating_comments">
               
@@ -148,6 +120,16 @@
             </form>
           <% end %>
         
+      </div>
+
+      <!-- favorite and flag -->
+      <div class="row justify-content-around">
+        <%@favorite = @the_beer.favorite?(@current_user.id) %>
+        <%@flag = @the_beer.flag?(@current_user.id) %>
+        <%@beer_id = @the_beer.id %>
+
+        <div class="col-md-4"><%= render "shared/favorite_button.html.erb"%></div>
+        <div class="col-md-4"><%= render "shared/flag_button.html.erb"%></div>
       </div>
 
       <div class="row">
@@ -208,3 +190,4 @@ $('#ex1').slider({
 	}
 });
 </script>
+
