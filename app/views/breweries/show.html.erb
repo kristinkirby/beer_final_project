@@ -1,3 +1,11 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/breweries">Breweries</a></li>
+    <li class="breadcrumb-item active" aria-current="page"><%=@the_brewery.name%></li>
+  </ol>
+</nav>
+
 <!-- Top Banner -->
 <div class = "container-fluid banner-img" style="background-image:url(<%=@the_brewery.banner_image%>)">
       
@@ -25,7 +33,7 @@
                 </a>
         <br><br>
         <i class="fas fa-beer"></i> <%=@the_brewery.beers.count%> Beers |              
-        <i class="fas fa-star"></i> ##.## Average Rating     
+        <i class="fas fa-star"></i> <%=@the_brewery.ratings%> Average Rating     
       </div>
     </div>
   </div>

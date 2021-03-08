@@ -24,5 +24,16 @@ class Rating < ApplicationRecord
     end 
   end
 
+  def avg_rating
+    values = self.map_relation_to_array(:rating)
+    if values.present?
+      avg = values.sum / values.count
+    else
+      avg = "N/A"
+    end
+    return avg
+  end 
+
+
 
 end
