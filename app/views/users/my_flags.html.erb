@@ -15,8 +15,16 @@
   </div>
 </div>
 
-<% @current_user.flags.each do |f| %>
-  <% @b = f.beer %>
-  <%= render "shared/my_favs_and_flags.html.erb" %> 
+<% if @current_user.flags == nil %>
+  You don't have any must-trys yet! 
+<% else %>
+
+  <% @current_user.flags.each do |f| %>
+    <% @b = f.beer %>
+  < %= render "shared/my_favs_and_flags.html.erb" %> 
+  <% end %>
 <% end %>
+
+
+
 

@@ -17,8 +17,13 @@
   </div>
 </div>
 
-<% @current_user.favorites.each do |f| %>
-  <% @b = f.beer %>
-  <%= render "shared/my_favs_and_flags.html.erb" %> 
+<% if @current_user.favorites == nil %>
+  You don't have any favorites yet! 
+<% else %>
+
+  <% @current_user.favorites.each do |f| %>
+    <% @b = f.beer %>
+    <%= render "shared/my_favs_and_flags.html.erb" %> 
+  <% end %>
 <% end %>
 

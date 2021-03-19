@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     @breweries = Brewery.all
     @users = User.all
 
-    @beers_of_the_day = Beer.all.sample(3)
+    @beer_of_the_day = Beer.all.sample
 
     render(:template => "testpage.html.erb")
   end 

@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all beers
+      What's on tap?
     </h1>
   </div>
 </div>
@@ -16,29 +16,29 @@
     <div class="row">
 
       <div class="col-md-3">
-        <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
+        <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img2"></a>
       </div> <!-- close col md 3 -->
 
       <div class="col-md-9" >
         <div class ="row">
           <div class = "col-md-4 align-self-center">
-            <a href="/beers/<%=b.id%>"><h4><%= b.name %></h4></a>
+            <a href="/beers/<%=b.id%>" class="text"><h4><%= b.name %></h4></a>
             <br>
-            <a href="/breweries/<%=b.brewery.id%>"><h5><%= b.brewery.name%></h5></a>
+            <a href="/breweries/<%=b.brewery.id%>" class="text"><h5><%= b.brewery.name%></h5></a>
           </div>
           <div class = "col-md-3 align-self-center">
             ABV: <%=b.abv%>
             <br>
             IBU: <%=b.ibu%>
             <br>
-            Style: BLANK
+            <%=b.style%>
           </div>
           <div class = "col-md-3 align-self-center">
             Avg. Rating: <%=b.avg_rating(false) %>
             <br>
             Your Rating: <%=b.avg_rating(@current_user.id) %>
             <br>
-            <a href="/beers/<%=b.id%>">Update Rating</a>
+            <a href="/beers/<%=b.id%>" class="text">Update Rating</a>
           </div>
 
           <!-- Icons section -->
@@ -59,7 +59,7 @@
         </div>
         <hr>
         <div class = "row">
-          <div class = "col">
+          <div class = "col description-box">
             <%=b.description%>
           </div>
         </div>
@@ -72,80 +72,3 @@
 </div> <!-- close container-->  
 <%end%>     
       
-
-<!-- Form for adding a new beer.... I think we want to remove for now!-->
-<hr>
-
-<div>
-  <div>
-    <h2>
-      Add a new beer
-    </h2>
-
-    <form action="/insert_beer" method="post">
-      
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="brewery_id_box">Brewery</label>
-
-        <select id = "brewery_id_box" name = "query_brewery_id">
-          <% Brewery.all.each do |br| %>
-            <option value = "<%=br.id%>"><%=br.name%></option>
-          <% end %>
-        </select>
-      </div>
-
-
-      <div>
-        <label for="abv_box">
-          Abv
-        </label>
-
-        <input type="text" id="abv_box" name="query_abv">
-      </div>
-
-      <div>
-        <label for="ibu_box">
-          Ibu
-        </label>
-
-        <input type="text" id="ibu_box" name="query_ibu">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <input type="text" id="description_box" name="query_description">
-      </div>
-
-      <div>
-        <label for="image_box">
-          Image
-        </label>
-
-        <input type="text" id="image_box" name="query_image">
-      </div>
-
-      <div>
-        <label for="style_id_box">
-          Style
-        </label>
-
-        <input type="text" id="style_id_box" name="query_style_id">
-      </div>
-
-      <button>
-        Create beer
-      </button>
-    </form>
-  </div>
-</div>

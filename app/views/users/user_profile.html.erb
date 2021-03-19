@@ -27,8 +27,6 @@
       <!-- edit profile link (only visible when looking at your own page) --> 
       <div class = "col-md-2">
         <% if @current_user.id == @user.id %>
-          
-          
           <a href ="/edit_user_profile"><button type = "button" class = "btn btn-outline-light">Edit profile <i class="fas fa-user-edit"></i></button></a>
         <% end %>
       </div>
@@ -83,7 +81,7 @@
                       <br>
                       Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
                       <br>
-                      <a href="/beers/<%=b.id%>">Update Rating</a>
+                      <a href="/beers/<%=b.id%>" class="text">Update Rating</a>
                     </div>
                 
                     <!-- Icons section (for your own profile) -->
@@ -139,22 +137,29 @@
 
     <div class = "col-md-3">
       <div class = "row">
-        <div class ="card"><h3>Favorites</h3></div>
-                  
-        <!-- try to get hover part to show beer name! -->
+        <h3>Favorites</h3>
+      </div>
+      <div class = "row">
         <% @user.favorites.each do |f| %>
           <div>
-            <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="table_img"></a>
+            <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="feed-pic"></a>
+          </div>
+        <% end %>
+
+      </div>
+
+      <div class = "row">
+        <h3>Must-Try Beers</h3>
+      </div>
+      
+      <div class = "row">
+        <% @user.flags.each do |f| %>
+          <div>
+            <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="feed-pic"></a>
           </div>
         <% end %>
       </div>
 
-      <div class = "row">
-        <div class="card"><h3>Must-Try Beers</h3></div>
-        <% @user.flags.each do |f| %>
-          <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="table_img"></a>
-        <% end %>
-      </div>
     </div>
   
   </div>

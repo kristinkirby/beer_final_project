@@ -1,7 +1,7 @@
 <div>
   <div>
     <h1>
-      List of all breweries
+      Who makes these delicious brews?
     </h1>
   </div>
 </div>
@@ -16,13 +16,13 @@
 
       <div class="col-md-3">
         <a href = "/breweries/<%=br.id%>">
-        <img src = <%= br.logo_image%> class ="table_img"></a>
+        <img src = <%= br.logo_image%> class ="table_img2"></a>
       </div> <!-- close col md 3 -->
 
       <div class="col-md-9" >
         <div class ="row">
           <div class = "col-md-6 align-self-center">
-            <a href="/breweries/<%=br.id%>"><h3><%= br.name %></h3></a>
+            <a href="/breweries/<%=br.id%>" class="text"><h3><%= br.name %></h3></a>
             <br>
             <%@rating= br.avg_rating(false) %>
             <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating
@@ -45,7 +45,9 @@
         <hr>
         <div class = "row">
           <div class = "col">
-            <%=br.description%>
+            <div class="overflow-auto description-box">
+              <%=br.description%>
+            </div>
           </div>
         </div>
         
@@ -56,77 +58,3 @@
   </div> <!-- close card-->
 </div> <!-- close container-->  
 <%end%>     
-
-<hr>
-<br>
-
-
-<div>
-  <div>
-    <h2>
-      Request a new brewery
-    </h2>
-
-    <form action="/insert_brewery" method="post">
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name">
-      </div>
-
-      <div>
-        <label for="location_box">
-          Location
-        </label>
-
-        <input type="text" id="location_box" name="query_location">
-      </div>
-
-      <div>
-        <label for="phone_number_box">
-          Phone number
-        </label>
-
-        <input type="text" id="phone_number_box" name="query_phone_number">
-      </div>
-
-      <div>
-        <label for="website_box">
-          Website
-        </label>
-
-        <input type="text" id="website_box" name="query_website">
-      </div>
-
-      <div>
-        <label for="logo_image_box">
-          Logo image
-        </label>
-
-        <input type="text" id="logo_image_box" name="query_logo_image">
-      </div>
-
-      <div>
-        <label for="description_box">
-          Description
-        </label>
-
-        <input type="text" id="description_box" name="query_description">
-      </div>
-
-      <div>
-        <label for="beers_count_box">
-          Beers count
-        </label>
-
-        <input type="text" id="beers_count_box" name="query_beers_count">
-      </div>
-
-      <button>
-        Create brewery
-      </button>
-    </form>
-  </div>
-</div>

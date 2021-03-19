@@ -8,10 +8,10 @@
 #  ibu         :string
 #  image       :string
 #  name        :string
+#  style       :string
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  brewery_id  :integer
-#  style_id    :integer
 #
 class Beer < ApplicationRecord
 

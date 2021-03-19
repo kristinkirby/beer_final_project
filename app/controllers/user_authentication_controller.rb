@@ -50,7 +50,7 @@ class UserAuthenticationController < ApplicationController
     @user.dob = Date.strptime(params.fetch("query_dob"), '%m-%d-%Y')
 
     
-    # check dob... must be > 21
+    # make sure the user is old enough 
     year_diff = Date.today.year - @user.dob.year
     day_diff = Date.today.yday - @user.dob.yday
     if year_diff >= 22

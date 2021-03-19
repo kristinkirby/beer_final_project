@@ -21,7 +21,7 @@
       <!-- info -->
       <div class = "col-md-6 banner-info">
         <div class="banner-title"><%=@the_beer.name%></div>
-        <a href = "/breweries/<%=@the_beer.brewery.id%>"><div class="banner-subtitle"><%=@the_beer.brewery.name%></div></a>
+        <a href = "/breweries/<%=@the_beer.brewery.id%>" class="text"><div class="banner-subtitle"><%=@the_beer.brewery.name%></div></a>
         <div class="banner-subtitle2">Style name goes here</div>
         <br>
         <div class="banner-text">
@@ -40,7 +40,7 @@
 </div>
 
 <!-- Description container -->
-<div class = "container banner-info description-box"> 
+<div class = "container banner-info description-box overflow-auto"> 
   <%=@the_beer.description %>
 </div> 
 
@@ -65,7 +65,8 @@
               <div class="col-md-9">
                 <h5>
                     <a href="/users/<%=r.user_id%>" class="text"><%=r.user.display_name%></a><br>
-                    <%= r.rating %>
+                    <%= r.rating %> <i class="fas fa-star"></i> 
+                    
                   </h5>
                 
                 <p><%=r.rating_comments%></p>
@@ -149,69 +150,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<input id="ex1" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-
-
-
-<script>
-$('#ex1').slider({
-	formatter: function(value) {
-		return 'Current value: ' + value;
-	}
-});
-
-</script>
-<br><br><br><br>
-
-
-<!-- this is how you get the stars to show!!! ---> 
-<!--<p><span class="stars-container stars-70">★★★★★</span></p>-->
-<!--
-<div class="chrome">
-  <input id="myinput" 
-    min="0" max="60" type="range" value="30"/>
-</div>
-<span id="myinputSliderValLabel">Current Slider Value: <span id="myinputSliderValLabel">Current Slider Value: <span id="myinputSliderValLabel">3</span></span>">3</span></span>
-
-<script>
-document.getElementById("myinput").oninput = function() {
-  var value = (this.value-this.min)/(this.max-this.min)*100
-  this.style.background = 'linear-gradient(to right, #82CFD0 0%, #82CFD0 ' + value + '%, #fff ' + value + '%, white 100%)'
-};
-
-
-var slider = new Slider('#ex1', {
-	formatter: function(value) {
-		return 'Current value: ' + value;
-	}
-});
-
-
-slider.on("slide", function(sliderValue) {
-	document.getElementById("ex6SliderVal").textContent = sliderValue;
-});
-</script>
--->
-
-<input id="ex1" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
-<script>
-$('#ex1').slider({
-	formatter: function(value) {
-		return 'Current value: ' + value;
-	}
-});
-</script>
-
