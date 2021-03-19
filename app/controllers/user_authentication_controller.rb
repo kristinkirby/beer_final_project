@@ -48,7 +48,7 @@ class UserAuthenticationController < ApplicationController
     @user.name = params.fetch("query_name")
     @user.photo = params.fetch("query_photo")
     @user.dob = Date.strptime(params.fetch("query_dob"), '%m-%d-%Y')
-
+    @user.bg_color = params.fetch("query_bg_color")
     
     # make sure the user is old enough 
     year_diff = Date.today.year - @user.dob.year
@@ -90,6 +90,7 @@ class UserAuthenticationController < ApplicationController
     @user.name = params.fetch("query_name")
     @user.photo = params.fetch("query_photo")
     @user.dob = params.fetch("query_dob")
+    @user.bg_color = params.fetch("query_bg_color")
     
     if @user.valid?
       @user.save
