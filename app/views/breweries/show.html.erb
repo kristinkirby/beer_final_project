@@ -79,7 +79,7 @@
                     <br>
                     IBU: <%=b.ibu%>
                     <br>
-                    Style: BLANK
+                    <%=b.style%>
                   </div>
                   <div class = "col-md-3 align-self-center">
                     Avg. Rating: <%=b.avg_rating(false) %>
@@ -94,7 +94,7 @@
                   <%@flag = b.flag?(@current_user.id) %>
                   <% @beer_id = b.id %>
                   <!--favorites-->
-                  <div class = "col-md-1 align-self-center">
+                  <div class = "col-md-1 align-self-center" >
                     <%= render "shared/favorite_button"%>
                   </div>
 

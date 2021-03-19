@@ -83,6 +83,7 @@ Rails.application.routes.draw do
   get("/my_favorites", {:controller => "users", :action => "show_favorites"})
   get("/my_flags", {:controller => "users", :action => "show_flags"})
 
+  get("/user_list", {:controller => "users", :action => "user_list"})
 
 
 

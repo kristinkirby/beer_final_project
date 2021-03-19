@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  bg_color        :string
 #  display_name    :string
 #  dob             :date
 #  email           :string

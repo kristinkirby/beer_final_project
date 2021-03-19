@@ -21,4 +21,9 @@ class UsersController < ApplicationController
     render({:template => "users/my_flags.html.erb"})
   end 
 
+  def user_list
+    @all_users = User.all 
+    render({:template => "users/user_list.html.erb"})
+  end 
+
 end

@@ -1,7 +1,7 @@
 
 <div>
   <form action = "/users/<%=@current_user.id%>">
-    <button class = "btn btn-primary"><i class="fas fa-user"></i> Back to my profile</button>
+    <button class = "btn btn-info"><i class="fas fa-user"></i> Back to my profile</button>
   </form>
 </div>
 
@@ -49,29 +49,16 @@
     </div>
     <div></div>
     <div class="col-md-6">
-      <button type="submit" class="btn btn-primary">Update account</button>
+      <button type="submit" class="btn btn-info">Update account</button>
     </div>
   </form>
 
 </div>
-<br>
-<hr>
-
-<div>
-  <form action = "/cancel_user_account">                  
-    <button class = "btn btn-secondary" style="text-align:center; font-size:2em">
-      <i class="far fa-trash-alt" ></i> Delete my account 
-    </button>
-  </form>
-</div>
-
-
-
-                  
-
 
 <br>
 <hr>
+<br>
+
 <div>
   <h5>Delete reviews</h5>
   <%@user = @current_user%>
@@ -104,7 +91,7 @@
                       <br>
                       IBU: <%=b.ibu%>
                       <br>
-                      Style: BLANK
+                      <%=b.style%>
                     </div>
                     
                     <!-- if looking at your own profile, you want to be able to update and like -->
@@ -185,4 +172,13 @@
 
 
 
+</div>
+
+<hr>
+<div>
+  <form action = "/cancel_user_account">                  
+    <button class = "btn btn-secondary" style="text-align:center">
+      <i class="far fa-trash-alt" ></i> Delete my account 
+    </button>
+  </form>
 </div>

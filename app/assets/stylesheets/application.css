@@ -37,11 +37,19 @@
   background:none;
   cursor:pointer;
   color: black; 
-  padding:0;
+  
   text-decoration:underline;
   font-family:inherit;
   font-size: 2em;
+  display:inline-block;
+  text-align: center;
+  vertical-align: bottom;
+  padding: 0; 
 }
+i {
+    text-align:center;
+}
+
 .icon-btn:hover { 
   color: pink;
 }
@@ -77,9 +85,11 @@
  }
 
 .profile-pic {
+    border-radius: 50%;
     position: relative;
     overflow: hidden;
-    border-radius: 50%;
+    object-fit: cover; 
+    
 }
 .banner-pic {
   width: 250px;
@@ -93,11 +103,19 @@
   width: 125px;
   height: 125px;
   border-radius: 50%;
+  object-fit: cover; 
   padding: 4px;
 }
 .xs-pic { 
   width: 75px;
   height: 75px;
+}
+.user-list-pic{
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  object-fit: cover; 
+  padding: 4px;
 }
 
 /* Banner settings */

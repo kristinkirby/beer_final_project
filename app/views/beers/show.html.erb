@@ -8,7 +8,8 @@
 
 
 <!--Banner with user info-->
-<div class = "container-fluid" style="background-color: LightPink">
+
+<div class = "container-fluid banner-img" style="background-image:url(<%=@the_beer.brewery.banner_image%>)">
   <div class = "container" style="padding: 10px">
     <div class = "row align-items-center">
       
@@ -22,12 +23,12 @@
       <div class = "col-md-6 banner-info">
         <div class="banner-title"><%=@the_beer.name%></div>
         <a href = "/breweries/<%=@the_beer.brewery.id%>" class="text"><div class="banner-subtitle"><%=@the_beer.brewery.name%></div></a>
-        <div class="banner-subtitle2">Style name goes here</div>
+        <div class="banner-subtitle2"><%=@the_beer.style%></div>
         <br>
         <div class="banner-text">
-          <i class="fas fa-beer"></i> <%=@the_beer.ratings.count %> Beers | 
-          <i class="fas fa-heart"></i> <%=@the_beer.favorites.count%> Favorites |              
-          <i class="fas fa-bookmark"></i> <%=@the_beer.flags.count%> Must-Try Beers |  
+          <i class="fas fa-beer"></i> <%=@the_beer.ratings.count %> Reviews | 
+          <i class="fas fa-heart"></i> Favorited by <%=@the_beer.favorites.count%> |              
+          <i class="fas fa-bookmark"></i> Flagged by <%=@the_beer.flags.count%> 
           <br>
           <%@rating=@the_beer.avg_rating(false)%> 
           <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating

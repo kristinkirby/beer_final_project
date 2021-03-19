@@ -4,35 +4,35 @@
       <div class="row">
 
         <div class="col-md-3">
-          <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
+          <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img2"></a>
         </div> <!-- close col md 3 -->
 
         <div class="col-md-9" >
           <div class ="row">
             <div class = "col-md-4 align-self-center">
-              <a href="/beers/<%=b.id%>"><h4><%= b.name %></h4></a>
+              <a href="/beers/<%=b.id%>" class="text"><h4><%= b.name %></h4></a>
               <br>
-              <a href="/breweries/<%=b.brewery.id%>"><h5><%= b.brewery.name%></h5></a>
+              <a href="/breweries/<%=b.brewery.id%>" class="text"><h5><%= b.brewery.name%></h5></a>
             </div>
             <div class = "col-md-3 align-self-center">
               ABV: <%=b.abv%>
               <br>
               IBU: <%=b.ibu%>
               <br>
-              Style: BLANK
+              <%= b.style %>
             </div>
             <div class = "col-md-3 align-self-center">
               Avg. Rating: <%=b.avg_rating(false) %>
               <br>
               Your Rating: <%=b.avg_rating(@current_user.id) %>
               <br>
-              <a href="/beers/<%=b.id%>">Update Rating</a>
+              <a href="/beers/<%=b.id%>" class="text">Update Rating</a>
             </div>
 
           </div>
           <hr>
           <div class = "row">
-            <div class = "col">
+            <div class = "col description-box">
               <%=b.description%>
             </div>
           </div>

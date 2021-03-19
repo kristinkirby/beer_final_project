@@ -71,7 +71,7 @@
                     <br>
                     IBU: <%=b.ibu%>
                     <br>
-                    Style: BLANK
+                    <%=b.style%>
                   </div>
                   
                   <!-- if looking at your own profile, you want to be able to update and like -->
@@ -109,9 +109,11 @@
                       Avg. Rating: <%=b.avg_rating(false) %>
                     </div>
                     <div class = "col-md-2 align-self-center">
-                      Update Rating
-                      <br>
-                      <i class="fas fa-star"></i> 
+                      <a href="/beers/<%=b.id%>" class="text">
+                        Update Rating
+                        <br>
+                        <i class="fas fa-star"></i> 
+                      </a>
 
                     </div>
                   <% end %>
