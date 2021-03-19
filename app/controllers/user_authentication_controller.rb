@@ -49,12 +49,6 @@ class UserAuthenticationController < ApplicationController
     @user.photo = params.fetch("query_photo")
     @user.dob = params.fetch("query_dob")
 
-    # check dob... must be > 21
-    dob = Date.parse(@user.dob)
-    today = Date.today
-      #check years 
-      year_diff = today.year - dob.year
-      
 
 
 
