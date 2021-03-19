@@ -38,6 +38,8 @@ class UserAuthenticationController < ApplicationController
   end
 
   def create
+    require "date"
+
     @user = User.new
     @user.email = params.fetch("query_email")
     @user.password = params.fetch("query_password")
@@ -46,6 +48,15 @@ class UserAuthenticationController < ApplicationController
     @user.name = params.fetch("query_name")
     @user.photo = params.fetch("query_photo")
     @user.dob = params.fetch("query_dob")
+
+    # check dob... must be > 21
+    dob = Date.parse(@user.dob)
+    today = Date.today
+      #check years 
+      year_diff = today.year - dob.year
+      
+
+
 
     save_status = @user.save
 

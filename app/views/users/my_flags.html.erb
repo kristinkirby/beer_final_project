@@ -1,1 +1,22 @@
-my flags!!!! 
+<div class="container">
+  <div class="row">
+    <div class="col-md-9">
+      <h1><i class="fas fa-bookmark"></i> <%=@current_user.display_name%>'s Must-Try Beers</h1>
+    </div>
+
+    <div class="col-md-3">
+      <form action = "/users/<%=@current_user.id%>">
+        <button class = "btn btn-primary"><i class="fas fa-user"></i> Back to my profile</button>
+      </form>
+
+    </div>
+
+
+  </div>
+</div>
+
+<% @current_user.flags.each do |f| %>
+  <% @b = f.beer %>
+  <%= render "shared/my_favs_and_flags.html.erb" %> 
+<% end %>
+
