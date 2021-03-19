@@ -47,19 +47,32 @@ class UserAuthenticationController < ApplicationController
     @user.display_name = params.fetch("query_display_name")
     @user.name = params.fetch("query_name")
     @user.photo = params.fetch("query_photo")
-    @user.dob = params.fetch("query_dob")
+    @user.dob = Date.strptime(params.fetch("query_dob"), '%m-%d-%Y')
 
-
-
-
-    save_status = @user.save
+    
+    # check dob... must be > 21
+    year_diff = Date.today.year - @user.dob.year
+    day_diff = Date.today.yday - @user.dob.yday
+    if year_diff >= 22
+      old_enough = true
+    elsif year_diff == 21 && day_diff >= 0 
+      old_enough = true 
+    else
+      old_enough = false  
+    end
+      
+    if old_enough   
+      save_status = @user.save
+    else
+      save_status = false   
+    end
 
     if save_status == true
       session[:user_id] = @user.id
-   
       redirect_to("/", { :notice => "Cheers! Account created successfully."})
-    else
-      # else we'll want to redirect back to hte sign up page. 
+    elsif old_enough == false 
+      redirect_to("/user_sign_up", { :alert => "You must be 21 to make an account here. Come back on your 21st birthday!"})
+    else 
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
     end
   end
