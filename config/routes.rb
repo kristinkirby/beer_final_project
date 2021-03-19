@@ -7,8 +7,8 @@ Rails.application.routes.draw do
   post("/insert_rating", { :controller => "ratings", :action => "create" })
           
   # READ
-  get("/ratings", { :controller => "ratings", :action => "index" })
-  get("/ratings/:path_id", { :controller => "ratings", :action => "show" })
+  #get("/ratings", { :controller => "ratings", :action => "index" })
+  #get("/ratings/:path_id", { :controller => "ratings", :action => "show" })
   
   # UPDATE
   post("/modify_rating/:path_id", { :controller => "ratings", :action => "update" })
@@ -21,34 +21,34 @@ Rails.application.routes.draw do
   # Routes for the Brewery resource:
 
   # CREATE
-  post("/insert_brewery", { :controller => "breweries", :action => "create" })
+  #post("/insert_brewery", { :controller => "breweries", :action => "create" })
           
   # READ
   get("/breweries", { :controller => "breweries", :action => "index" })
   get("/breweries/:path_id", { :controller => "breweries", :action => "show" })
   
   # UPDATE
-  post("/modify_brewery/:path_id", { :controller => "breweries", :action => "update" })
+  #post("/modify_brewery/:path_id", { :controller => "breweries", :action => "update" })
   
   # DELETE
-  get("/delete_brewery/:path_id", { :controller => "breweries", :action => "destroy" })
+  #get("/delete_brewery/:path_id", { :controller => "breweries", :action => "destroy" })
 
   #------------------------------
 
   # Routes for the Beer resource:
 
   # CREATE
-  post("/insert_beer", { :controller => "beers", :action => "create" })
+  #post("/insert_beer", { :controller => "beers", :action => "create" })
           
   # READ
   get("/beers", { :controller => "beers", :action => "index" })
   get("/beers/:path_id", { :controller => "beers", :action => "show" })
   
   # UPDATE
-  post("/modify_beer/:path_id", { :controller => "beers", :action => "update" })
+  #post("/modify_beer/:path_id", { :controller => "beers", :action => "update" })
   
   # DELETE
-  get("/delete_beer/:path_id", { :controller => "beers", :action => "destroy" })
+  #get("/delete_beer/:path_id", { :controller => "beers", :action => "destroy" })
 
   #------------------------------
 
@@ -99,8 +99,8 @@ Rails.application.routes.draw do
   post("/insert_flag", { :controller => "flags", :action => "create" })
           
   # READ
-  get("/flags", { :controller => "flags", :action => "index" })
-  get("/flags/:path_id", { :controller => "flags", :action => "show" })
+  #get("/flags", { :controller => "flags", :action => "index" })
+  #get("/flags/:path_id", { :controller => "flags", :action => "show" })
   
   # UPDATE
   post("/modify_flag/:path_id", { :controller => "flags", :action => "update" })
@@ -117,9 +117,9 @@ Rails.application.routes.draw do
 
          
   # READ
-  get("/favorites", { :controller => "favorites", :action => "index" })
+  #get("/favorites", { :controller => "favorites", :action => "index" })
   
-  get("/favorites/:path_id", { :controller => "favorites", :action => "show" })
+  #get("/favorites/:path_id", { :controller => "favorites", :action => "show" })
   
   # UPDATE
   
@@ -130,24 +130,7 @@ Rails.application.routes.draw do
 
   #------------------------------
 
-  # Routes for the Style resource:
-
-  # CREATE
-  post("/insert_style", { :controller => "styles", :action => "create" })
-          
-  # READ
-  get("/styles", { :controller => "styles", :action => "index" })
   
-  get("/styles/:path_id", { :controller => "styles", :action => "show" })
-  
-  # UPDATE
-  
-  post("/modify_style/:path_id", { :controller => "styles", :action => "update" })
-  
-  # DELETE
-  get("/delete_style/:path_id", { :controller => "styles", :action => "destroy" })
-
-  #------------------------------
 
 
 end

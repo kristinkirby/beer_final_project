@@ -53,8 +53,9 @@
     <div class = "col-md-9">
       <h4><%=@the_beer.name%> Ratings</h4>
       
-      <div class="container">
-        <% @the_beer.ratings.order({:updated_at => :desc}).each do |r| %>
+      
+      <% @the_beer.ratings.order({:updated_at => :desc}).each do |r| %>
+        <div class="container rating-card">
           <div class="card">
             <div class="row">
               <div class = "col-md-3 align-self-center">
@@ -64,20 +65,20 @@
               </div>
               
               <div class="col-md-9">
-                <h5>
+                <div class="card-text level-one">
                     <a href="/users/<%=r.user_id%>" class="text"><%=r.user.display_name%></a><br>
                     <%= r.rating %> <i class="fas fa-star"></i> 
                     
-                  </h5>
+                  </div>
                 
                 <p><%=r.rating_comments%></p>
                 <p>Posted <%=time_ago_in_words(r.updated_at)%> ago<p>
               </div>
             </div>
-          
-          </div>
-        <% end %>
-      </div>
+          </div>    
+        </div>
+      <% end %>
+      
 
 
 
