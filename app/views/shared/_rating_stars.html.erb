@@ -1,0 +1,7 @@
+<!-- Show the ratings in terms of number of stars -->
+<% if @rating == "N/A" %>
+  <% num ="00" %>
+<% else %>
+  <% num = ((@rating * 4.0).round / 4.0 * 20).to_i  %>
+<% end %>
+<span class="stars-container stars-<%=num%>">★★★★★</span> 

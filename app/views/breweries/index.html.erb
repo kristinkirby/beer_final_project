@@ -23,7 +23,9 @@
         <div class ="row">
           <div class = "col-md-6 align-self-center">
             <a href="/breweries/<%=br.id%>"><h3><%= br.name %></h3></a>
-            <i class="fas fa-star"></i> <%=br.avg_rating(false)%> Average Rating     
+            <br>
+            <%@rating= br.avg_rating(false) %>
+            <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating
           </div>
           
           <div class = "col-md-6 align-self-center">

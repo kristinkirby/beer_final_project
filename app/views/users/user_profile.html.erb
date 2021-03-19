@@ -17,21 +17,26 @@
         <div class="banner-text">
           <i class="fas fa-beer"></i> <%=@user.ratings.count%> Beers | 
           <i class="fas fa-heart"></i> <%=@user.favorites.count%> Favorites |              
-          <i class="fas fa-bookmark"></i> <%=@user.flags.count%> Must-Try Beers |  
-          <i class="fas fa-star"></i> <%=@user.avg_rating%> Avg. Rating
+          <i class="fas fa-bookmark"></i> <%=@user.flags.count%> Must-Try Beers 
+          <br>
+          <%@rating=@user.avg_rating%> 
+          <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating
         </div>
       </div>
 
-      <!-- edit link --> 
-      <!--NOTE MAYBE WE ONLY WANT THIS WHEN ITS YOUR PROFILE BUT YOU CAN STILL SEE OTHER PROFILES -->
+      <!-- edit profile link (only visible when looking at your own page) --> 
       <div class = "col-md-2">
         <% if @current_user.id == @user.id %>
-          <button type = "button" class = "btn btn-outline-light">Edit profile <i class="fas fa-user-edit"></i></button>
+          <a href ="/edit_user_profile"><button type = "button" class = "btn btn-outline-light">Edit profile <i class="fas fa-user-edit"></i></button></a>
         <% end %>
       </div>
     </div>
   </div>
 </div>
+
+
+
+
 
 <br>
 
@@ -76,38 +81,22 @@
                       <br>
                       Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
                       <br>
-                      Update Rating
+                      <a href="/beers/<%=b.id%>">Update Rating</a>
                     </div>
                 
                     <!-- Icons section (for your own profile) -->
-                    <%favorite = b.favorite?(@user.id) %>
-                    <%flag = b.flag?(@user.id) %>
-                    <!--favorites-->
+                    <%@favorite = b.favorite?(@user.id) %>
+                    <%@flag = b.flag?(@user.id) %>
+                    <%@beer_id = b.id %>
+                    
+                    <!-- favorites -->
                     <div class = "col-md-1 align-self-center">
-                      <% if favorite %>
-                          <form action = "/delete_favorite/<%=favorite.id%>">
-                            <button class = "icon-btn"><i class="fas fa-heart"></i></button>
-                          </form>
-                      <% else %>
-                        <form action = "/insert_favorite" method="post">
-                          <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                          <button class = "icon-btn"><i class="far fa-heart"></i></button>                          
-                        </form>
-                      <% end %>
+                      <%= render "shared/favorite_button.html.erb" %>
                     </div>
 
                     <!--flags-->
                     <div class = "col-md-1 align-self-center">
-                      <% if flag %>
-                          <form action = "/delete_flag/<%=flag.id%>">
-                            <button class = "icon-btn"><i class="fas fa-bookmark"></i></button>
-                          </form>
-                      <% else %>
-                        <form action = "/insert_flag" method="post">
-                          <input id = "beer_id" type ="hidden" value=<%=b.id%> name = "query_beer_id">
-                          <button class = "icon-btn"><i class="far fa-bookmark"></i></button>
-                        </form>
-                      <% end %>
+                      <%=render "shared/flag_button.html.erb"%>
                     </div>
                     <!--- end of icons section (for own profile) -->
                   <!-- if you're looking at someone else's ratings, you want to see their ratings and have option to update your own-->
@@ -149,21 +138,18 @@
     <div class = "col-md-3">
       <div class = "row">
         <div class ="card"><h3>Favorites</h3></div>
+        <!-- try to get hover part to show beer name! -->
         <% @user.favorites.each do |f| %>
           <div>
-          <img src = <%=f.beer.image%> class="table_img"
-            alt = "<%=f.beer.brewery.name%>: <%=f.beer.name%>">
+            <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="table_img"></a>
           </div>
-          
-
-          
         <% end %>
       </div>
 
       <div class = "row">
         <div class="card"><h3>Must-Try Beers</h3></div>
         <% @user.flags.each do |f| %>
-          <%= f.beer.name %><br>
+          <a href="/beers/<%=f.beer.id%>"><img src = <%=f.beer.image%> class="table_img"></a>
         <% end %>
       </div>
     </div>

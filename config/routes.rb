@@ -80,6 +80,8 @@ Rails.application.routes.draw do
   
   # User profile
   get("/users/:user_id", {:controller => "users", :action => "show_profile"})
+  get("/my_favorites", {:controller => "users", :action => "show_favorites"})
+  get("/my_flags", {:controller => "users", :action => "show_flags"})
 
 
 

@@ -13,4 +13,12 @@ class UsersController < ApplicationController
   end 
 
 
+  def show_favorites
+    render({:template => "users/my_favorites.html.erb"})
+  end
+
+  def show_flags
+    render({:template => "users/my_flags.html.erb"})
+  end 
+
 end

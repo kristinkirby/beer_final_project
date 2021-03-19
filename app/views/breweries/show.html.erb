@@ -32,9 +32,14 @@
                 <%=@the_brewery.location%>
                 </a>
         <br><br>
-        <i class="fas fa-beer"></i> <%=@the_brewery.beers.count%> Beers |              
-        <i class="fas fa-star"></i> <%=@the_brewery.avg_rating(false)%> Average Rating | 
-        <%=@the_brewery.ratings.count %>  
+        <i class="fas fa-beer"></i> <%=@the_brewery.beers.count%> Beers | 
+        <i class="fas fa-heart"></i> <%=@the_brewery.favorites.count%> Favorites | 
+        <i class="fas fa-bookmark"></i> <%=@the_brewery.flags.count%> Flags
+
+        <br>
+          <%@rating=@the_brewery.avg_rating(false)%> 
+          <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating
+
       </div>
     </div>
   </div>
@@ -82,7 +87,7 @@
                     <br>
                     Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
                     <br>
-                    Update Rating
+                    <a href="/beers/<%=b.id%>">Update Rating</a>
                   </div>
 
                   <!-- Icons section -->

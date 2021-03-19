@@ -18,6 +18,8 @@ class Brewery < ApplicationRecord
 
   has_many(:beers, { :class_name => "Beer", :foreign_key => "brewery_id", :dependent => :destroy })
   has_many(:ratings, through: :beers)
+  has_many(:favorites, through: :beers)
+  has_many(:flags, through: :beers)
 
   def avg_rating(user_id) 
     rating = self.ratings 

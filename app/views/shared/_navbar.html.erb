@@ -1,4 +1,4 @@
- <% if @current_user == nil %>
+ <% if @current_user == nil || @current_user.photo=="" %>
     <% photo = "https://freesvg.org/img/abstract-user-flat-4.png"%>
   <% else %>
     <% photo = @current_user.photo %>
@@ -33,9 +33,9 @@
           <% else %>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a href="/users/<%=@current_user.id%>" class="dropdown-item">My Profile</a>
-              <a href="/users/<%=@current_user.id%>" class="dropdown-item">Edit Profile</a>
-              <a href="/users/<%=@current_user.id%>" class="dropdown-item">Favorites</a>
-              <a href="/users/<%=@current_user.id%>" class="dropdown-item">Flagged</a>
+              <a href="/edit_user_profile" class="dropdown-item">Edit Profile</a>
+              <a href="/my_favorites" class="dropdown-item">My Favorites</a>
+              <a href="/my_flags" class="dropdown-item">My Must-Trys</a>
               <hr class = "dropdown-divider">
               <a href="/user_sign_out" class="dropdown-item">Sign out</a>
             </div>

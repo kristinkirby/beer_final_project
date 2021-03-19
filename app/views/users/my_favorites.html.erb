@@ -1,0 +1,5 @@
+my favorites!
+
+<% @current_user.beers.each do |b| %>
+  <%= b.name %>
+<% end %>

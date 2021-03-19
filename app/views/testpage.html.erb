@@ -2,7 +2,7 @@
 
   <div class = "row"> 
     <div class = "col text-center">
-      <h2>Welcome <%= session.fetch(:display_name)%>!</h2>
+      <h2>Welcome <%= @current_user.display_name %>!</h2>
     </div>
   </div>
  <!--**************************************************************-->
@@ -60,17 +60,4 @@
     </div> <!-- end of carousel -->
   
   </div>
- <!--**************************************************************-->
-  <div>
-    <a href="/users/1">USER 1 PROFILE</a>
-    <br>
-    <a href="/users/2">USER 2 PROFILE</a>
-  </div>
-
-</div>
-
-
-
-
-
-
+ 

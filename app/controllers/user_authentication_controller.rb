@@ -52,8 +52,9 @@ class UserAuthenticationController < ApplicationController
     if save_status == true
       session[:user_id] = @user.id
    
-      redirect_to("/", { :notice => "User account created successfully."})
+      redirect_to("/", { :notice => "Cheers! Account created successfully."})
     else
+      # else we'll want to redirect back to hte sign up page. 
       redirect_to("/user_sign_up", { :alert => "User account failed to create successfully."})
     end
   end
@@ -75,9 +76,9 @@ class UserAuthenticationController < ApplicationController
     if @user.valid?
       @user.save
 
-      redirect_to("/", { :notice => "User account updated successfully."})
+      redirect_to("/users/#{@current_user.id}", { :notice => "User account updated successfully."})
     else
-      render({ :template => "user_authentication/edit_profile_with_errors.html.erb" })
+      redirect_to("/edit_user_profile", { :alert => "Profile update failed."})
     end
   end
 
@@ -85,7 +86,7 @@ class UserAuthenticationController < ApplicationController
     @current_user.destroy
     reset_session
     
-    redirect_to("/", { :notice => "User account cancelled" })
+    redirect_to("/user_sign_in", { :notice => "User account cancelled" })
   end
  
 end

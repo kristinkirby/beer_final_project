@@ -21,14 +21,16 @@
       <!-- info -->
       <div class = "col-md-6 banner-info">
         <div class="banner-title"><%=@the_beer.name%></div>
-        <div class="banner-subtitle"><%=@the_beer.brewery.name%></div>
+        <a href = "/breweries/<%=@the_beer.brewery.id%>"><div class="banner-subtitle"><%=@the_beer.brewery.name%></div></a>
         <div class="banner-subtitle2">Style name goes here</div>
         <br>
         <div class="banner-text">
           <i class="fas fa-beer"></i> <%=@the_beer.ratings.count %> Beers | 
           <i class="fas fa-heart"></i> <%=@the_beer.favorites.count%> Favorites |              
           <i class="fas fa-bookmark"></i> <%=@the_beer.flags.count%> Must-Try Beers |  
-          <i class="fas fa-star"></i><%=@the_beer.avg_rating(false)%>  Avg. Rating
+          <br>
+          <%@rating=@the_beer.avg_rating(false)%> 
+          <%= render "shared/rating_stars.html.erb"%> <%=@rating%> Avg. Rating
         </div>
       </div>
 
@@ -151,6 +153,28 @@
 
 
 
+
+
+
+
+
+
+
+
+
+<input id="ex1" data-slider-id='ex1Slider' type="range" data-slider-min="0" data-slider-max="20" data-slider-step="1" data-slider-value="14"/>
+
+
+
+<script>
+$('#ex1').slider({
+	formatter: function(value) {
+		return 'Current value: ' + value;
+	}
+});
+
+</script>
+<br><br><br><br>
 
 
 <!-- this is how you get the stars to show!!! ---> 

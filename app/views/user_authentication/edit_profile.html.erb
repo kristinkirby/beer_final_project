@@ -1,44 +1,188 @@
+
+<div>
+  <form action = "/users/<%=@current_user.id%>">
+    <button class = "btn btn-primary">Back to my profile</button>
+  </form>
+</div>
+
+<br>
+<hr>
+
+
 <div >
   <h5>
     Edit User Account
   </h5>
 
-  <div>
-    <form action="/modify_user" method="post">
-      <div>
-        <label for="email_box">Email</label>
-        <input id="email_box" name="query_email" value="<%= @current_user.email %>">
-      </div>
-      <div>
-        <label for="display_name_box">Display name</label>
-        <input id="display_name_box" name="query_display_name" value="<%= @current_user.display_name %>">
-      </div>
-      <div>
-        <label for="name_box">Name</label>
-        <input id="name_box" name="query_name" value="<%= @current_user.name %>">
-      </div>
-      <div>
-        <label for="photo_box">Photo</label>
-        <input id="photo_box" name="query_photo" value="<%= @current_user.photo %>">
-      </div>
-      <div>
-        <label for="dob_box">Dob</label>
-        <input id="dob_box" name="query_dob" value="<%= @current_user.dob %>">
-      </div>
+  <form class="row g-3" action="/modify_user" method="post">
 
-      <div>
-        <label for="password_box">Password</label>
-        <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-      </div>
+    <div class="col-md-6">
+      <label for="name_box" class="form-label">Name</label>
+      <input id="name_box" name="query_name" value="<%= @current_user.name %>" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label for="display_name_box" class="form-label">Display name</label>
+      <input id="display_name_box" name="query_display_name" value="<%= @current_user.display_name %>" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+      <label for="email_box" class="form-label">Email</label>
+      <input id="email_box" name="query_email" value="<%= @current_user.email %>" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label for="dob_box" class="form-label">Dob</label>
+      <input id="dob_box" name="query_dob" value="<%= @current_user.dob %>" class="form-control">
+    </div>
+      <div class="col-md-4">
+        <label for="photo_box" class="form-label">Photo</label>
+        <input id="photo_box" name="query_photo" value="<%= @current_user.photo %>" class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="password_box" class="form-label">Password</label>
+      <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
     
-      <div>
-        <label for="password_confirmation_box">Password Confirmation</label>
-        <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
+    </div>
+    <div class="col-md-6">
+      <label for="password_confirmation_box" class="form-label">Password Confirmation</label>
+      <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+    </div>
+    <div></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Update account</button>
+    </div>
+  </form>
+
+</div>
+<br>
+<hr>
+
+<div>
+  <form action = "/cancel_user_account">                  
+    <button class = "btn btn-secondary" style="text-align:center; font-size:2em">
+      <i class="far fa-trash-alt" ></i> Delete my account 
+    </button>
+  </form>
+</div>
+
+
+
+                  
+
+
+<br>
+<hr>
+<div>
+  <h5>Delete reviews</h5>
+  <%@user = @current_user%>
+
+  <!-- Ratings and others -->
+  <div class = "container"> 
+    <div class = "row">
+      <div class = "col-md-12">
+        
+
+        <% @user.beers.each do |b| %>
+          <div class = "container" style = "padding: 4px">
+            <div class="card">
+              <div class="row">
+
+
+                <div class="col-md-3">
+                  <a href="/beers/<%=b.id%>"><img src = <%= b.image%> class ="table_img"></a>
+                </div> <!-- close col md 3 -->
+
+                <div class="col-md-6" >
+                  <div class ="row">
+                    <div class = "col-md-4 align-self-center">
+                      <a class="text" href="/beers/<%=b.id%>"><h3><%= b.name %></h3></a>
+                      
+                      <a class = "text" href="/breweries/<%=b.brewery.id%>"><h6><%= b.brewery.name%></h6></a>
+                    </div>
+                    <div class = "col-md-3 align-self-center">
+                      ABV: <%=b.abv%>
+                      <br>
+                      IBU: <%=b.ibu%>
+                      <br>
+                      Style: BLANK
+                    </div>
+                    
+                    <!-- if looking at your own profile, you want to be able to update and like -->
+                    <% if @current_user.id == @user.id %>
+                      <div class = "col-md-3 align-self-center">
+                        Avg. Rating: <%=b.avg_rating(false) %>
+                        <br>
+                        Your Rating: <%=b.avg_rating(session.fetch(:user_id)) %>
+                        <br>
+                        <a href="/beers/<%=b.id%>">Update Rating</a>
+                      </div>
+                  
+                      <!-- Icons section (for your own profile) -->
+                      <%@favorite = b.favorite?(@user.id) %>
+                      <%@flag = b.flag?(@user.id) %>
+                      <%@beer_id = b.id %>
+                      
+                      <!-- favorites -->
+                      <div class = "col-md-1 align-self-center">
+                        <%= render "shared/favorite_button.html.erb" %>
+                      </div>
+
+                      <!--flags-->
+                      <div class = "col-md-1 align-self-center">
+                        <%=render "shared/flag_button.html.erb"%>
+                      </div>
+                      <!--- end of icons section (for own profile) -->
+                    <!-- if you're looking at someone else's ratings, you want to see their ratings and have option to update your own-->
+                    <% else %>
+                      <div class = "col-md-3 align-self-center">
+                        <%= @user.name %>'s Rating: <%=b.avg_rating(@user.id) %>
+                        <br>
+                        Your Rating: <%=b.avg_rating(@current_user.id) %>
+                        <br>
+                        Avg. Rating: <%=b.avg_rating(false) %>
+                      </div>
+                      <div class = "col-md-2 align-self-center">
+                        Update Rating
+                        <br>
+                        <i class="fas fa-star"></i> 
+
+                      </div>
+                    <% end %>
+
+                  
+                  </div>
+                  <hr>
+                  <div class = "row">
+                    <div class = "col">
+                      <%= b.ratings.where({:user_id => @user.id}).first.rating_comments%>
+                    </div>
+                  </div>
+                  
+                </div> <!-- close col md 9 -->
+
+                <div class="col-md-3">
+                  
+                  <form action = "/delete_rating/<%=b.ratings.where({:user_id => @user.id}).first.id%>">
+                    
+                    <button class = "icon-btn"><i class="far fa-trash-alt" style="text-align:center; font-size:2em"></i></button>
+                    
+                  </form>
+                  
+                </div>
+
+
+              </div> <!-- close row-->
+            </div> <!-- close card-->
+          </div> <!-- close container-->  
+        <%end%>     
+
       </div>
 
-      <button>
-        Update account
-      </button>
-    </form>
+    
+    </div>
   </div>
+
+
+
+
 </div>

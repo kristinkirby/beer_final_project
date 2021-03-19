@@ -1,50 +1,45 @@
 <h1>Sign up</h1>
 
-<form action="/insert_user" method="post">
+  <form class="row g-3" action="/insert_user" method="post">
+  
+    <div class="col-md-6">
+      <label for="name_box" class="form-label">Name</label>
+      <input id="name_box" name="query_name" placeholder="e.g., Kristin Kirby" class="form-control">
+    </div>
+    <div class="col-md-6">
+      <label for="display_name_box" class="form-label">Display name</label>
+      <input id="display_name_box" name="query_display_name" placeholder="e.g., @beer_lover" class="form-control">
+    </div>
 
-  <div>
-    <label for="email_box">Email</label>
-    <input id="email_box" name="query_email" placeholder="Choose a email..." type="text">
-  </div>
-                 
-  <div>
-    <label for="display_name_box">Display name</label>
-      
-    <input type="text" id="display_name_box" name="query_display_name">
-  </div>
-         
-  <div>
-    <label for="name_box">Name</label>
-      
-    <input type="text" id="name_box" name="query_name">
-  </div>
-         
-  <div>
-    <label for="photo_box">Photo</label>
-      
-    <input type="text" id="photo_box" name="query_photo">
-  </div>
-         
-  <div>
-    <label for="dob_box">Dob</label>
-      
-    <input type="text" id="dob_box" name="query_dob">
-  </div>
+    <div class="col-md-4">
+      <label for="email_box" class="form-label">Email</label>
+      <input id="email_box" name="query_email" placeholder="Enter your email" class="form-control">
+    </div>
+    <div class="col-md-4">
+      <label for="dob_box" class="form-label">Dob</label>
+      <input id="dob_box" name="query_dob" placeholder="MM-DD-YYYY" class="form-control">
+    </div>
+      <div class="col-md-4">
+        <label for="photo_box" class="form-label">Photo</label>
+        <input id="photo_box" name="query_photo"  class="form-control">
+    </div>
+
+    <div class="col-md-6">
+      <label for="password_box" class="form-label">Password</label>
+      <input id="password_box" name="query_password" placeholder="Choose a password..." type="password" class="form-control">
     
-  <div>
-    <label for="password_box">Password</label>
-    <input id="password_box" name="query_password" placeholder="Choose a password..." type="password">
-  </div>
+    </div>
+    <div class="col-md-6">
+      <label for="password_confirmation_box" class="form-label">Password Confirmation</label>
+      <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password" class="form-control">
+    </div>
+    <div></div>
+    <div class="col-md-6">
+      <button type="submit" class="btn btn-primary">Create my account</button>
+    </div>
+  </form>
 
-  <div>
-    <label for="password_confirmation_box">Password Confirmation</label>
-    <input id="password_confirmation_box" name="query_password_confirmation" placeholder="Confirm your password..." type="password">
-  </div>
 
-  <button>
-    Sign up
-  </button>
-</form>
 
 <hr>
 

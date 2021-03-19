@@ -174,18 +174,9 @@ a.card-text:hover{
 
 
 
-#myinput {
-  background: linear-gradient(to right, #82CFD0 0%, #82CFD0 50%, #fff 50%, #fff 100%);
-  border: solid 1px #82CFD0;
-  border-radius: 8px;
-  height: 7px;
-  width: 356px;
-  outline: none;
-  transition: background 450ms ease-in;
-  -webkit-appearance: none;
+#ex1Slider .slider-selection {
+	background: #BABABA;
 }
-
-
 
 /* STARS */
 .stars-container {
@@ -210,15 +201,24 @@ a.card-text:hover{
   color: black;
   overflow: hidden;
 }
-
-.stars-0:after { width: 0%; }
+.stars-00:after { width: 0%; }
+.stars-05:after { width: 5%; }
 .stars-10:after { width: 10%; }
+.stars-15:after { width: 15%; }
 .stars-20:after { width: 20%; }
+.stars-25:after { width: 25%; }
 .stars-30:after { width: 30%; }
+.stars-35:after { width: 35%; }
 .stars-40:after { width: 40%; }
+.stars-45:after { width: 45%; }
 .stars-50:after { width: 50%; }
+.stars-55:after { width: 55%; }
 .stars-60:after { width: 60%; }
+.stars-65:after { width: 65%; }
 .stars-70:after { width: 70%; }
+.stars-75:after { width: 75%; }
 .stars-80:after { width: 80%; }
+.stars-85:after { width: 85%; }
 .stars-90:after { width: 90%; }
+.stars-95:after { width: 95%; }
 .stars-100:after { width: 100; }
